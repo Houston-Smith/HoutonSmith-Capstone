@@ -68,9 +68,9 @@ export const Login = ({setAuthUser}) => {
 					</fieldset>
 				</form>
 			</section>
-			{/* <section className="link--register">
+			<section className="link--register">
 				<Link to="/register">Register for an account</Link>
-			</section> */}
+			</section>
 		</main>
 	);
 };

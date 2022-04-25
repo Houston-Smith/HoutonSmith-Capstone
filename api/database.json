@@ -1,15 +1,25 @@
 {
   "managers": [
-      { 
-        "id": 1,
-        "name": "Elwood",
-        "password": "Password"
-      },
-      { 
-        "id": 2,
-        "name": "Wiggins",
-        "password": "Passwordz"
-      }
+    {
+      "id": 1,
+      "name": "Elwood",
+      "password": "Password"
+    },
+    {
+      "id": 2,
+      "name": "Wiggins",
+      "password": "Passwordz"
+    },
+    {
+      "name": "Hot Rod Wheatgreaser",
+      "password": "greasethatwheat",
+      "id": 3
+    },
+    {
+      "name": "Lucy-Leigh Toadscramble",
+      "password": "boilem",
+      "id": 4
+    }
   ],
   "heists": [],
   "hideouts": [],
