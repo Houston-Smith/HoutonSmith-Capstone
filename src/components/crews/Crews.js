@@ -30,7 +30,7 @@ export const Crews = () => {
 
   const getCrews = () => {
     //Pull Crews array for the active user from API...
-    return getCrewsOfActiveUser().then(crews => {
+    return getCrewsOfActiveUser(currentUser).then(crews => {
       //...then populate empty crews array with what comes back.
       setCrews(crews)
     })
