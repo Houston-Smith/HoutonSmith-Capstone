@@ -1,0 +1,49 @@
+.dashboard-div {
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+.dashboard-title {
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+}
+
+.dashboard-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.weather-div {
+  text-align: center;
+}
+
+.event-header, .article-header {
+  margin-bottom: 1em;
+}
+
+.dashboard-event-card, .dashboard-article-card {
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+  padding: .5em;
+  margin-bottom: .5em;
+}
+
+.event-card-content, .article-card-content {
+  padding: 0.5em;
+}
+
+.event-title, .article-title {
+  padding-bottom: .25em;
+}
+
+.dashboard-event-card:nth-child(odd), .dashboard-article-card:nth-child(odd) {
+  background-color: #C3DBD9;
+}
+
+.dashboard-event-card:nth-child(even), .dashboard-article-card:nth-child(even) {
+  background-color: #C8F2EF;
+}
+
+.article-timestamp {
+  margin-top: 1em;
+}

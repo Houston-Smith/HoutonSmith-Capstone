@@ -1,0 +1,18 @@
+{
+  "managers": [
+      { 
+        "id": 1,
+        "name": "Elwood",
+        "password": "Password"
+      },
+      { 
+        "id": 2,
+        "name": "Wiggins",
+        "password": "Passwordz"
+      }
+  ],
+  "heists": [],
+  "hideouts": [],
+  "crews": [],
+  "cronies": []
+}
