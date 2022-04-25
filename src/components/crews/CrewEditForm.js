@@ -1,38 +1,37 @@
 import React, { useState, useEffect } from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import { getTaskById, updateTask } from "./TaskManager";
-import { getCrewById } from "../../modules/CrewManager";
+import { getCrewById, updateCrew } from "../../modules/CrewManager";
 
 export const CrewEditForm = () => {
-  const [crew, setCrew] = useState({ name: "", desription: "" });
+  const [crew, setCrew] = useState({ name: "", description: "" });
   const [isLoading, setIsLoading] = useState(false);
 
   const {crewId} = useParams();
   const navigate = useNavigate();
 
   const handleFieldChange = evt => {
-    const stateToChange = { ...task };
+    const stateToChange = { ...crew };
     stateToChange[evt.target.id] = evt.target.value;
-    setTask(stateToChange);
+    setCrew(stateToChange);
   };
 
-  const updateExistingTask = evt => {
+  const updateExistingCrew = evt => {
     evt.preventDefault()
     setIsLoading(true);
 
     // default values for locationId and customerId
     // if you already have these components/modules in place, you will need to include the correct information
-    const editedTask = {
-      id: taskId,
-      name: task.name,
-      date: task.date,
-	    isComplete: false,
-	    userId: task.userId
+    const editedCrew = {
+      id: crewId,
+	    managerId: crew.managerId,
+	    hideoutId: crew.hideoutId,
+      name: crew.name,
+      description: crew.description,
     };
 
   //pass the editedAnimal object to the database
-  updateTask(editedTask)
-    .then(() => navigate("/tasks")
+  updateCrew(editedCrew)
+    .then(() => navigate("/crews")
     )
   }
 
@@ -45,32 +44,32 @@ export const CrewEditForm = () => {
   }, []);
 
   const ClickCancel = (event) => {
-    navigate("/tasks")
+    navigate("/crews")
   }
   
   return (
     <>
       <form className="taskForm">
 
-      <h2>Update A Task</h2>
+      <h2>Update A Crew</h2>
 
 			<fieldset>
 				<div className="form-group">
-					<label htmlFor="name">Task:</label>
-					<input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Task name" value={task.name} />
+					<label htmlFor="name">Crew:</label>
+					<input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Crew name" value={crew.name} />
 				</div>
 			</fieldset>
 
       <fieldset>
 				<div className="form-group">
-					<label htmlFor="date">Complete By:</label>
-					<input type="date" id="date" onChange={handleFieldChange} required className="form-control" placeholder="Event date" value={task.date} />
+					<label htmlFor="date">Description:</label>
+					<input type="text" id="description" onChange={handleFieldChange} required className="form-control" placeholder="Crew Description" value={crew.description} />
 				</div>
 			</fieldset>
 
       <div className="buttons">
         <button type="button" disabled={isLoading} className="btn btn-primary"
-          onClick={updateExistingTask}>
+          onClick={updateExistingCrew}>
           Update
             </button>
 

@@ -66,3 +66,18 @@ export const deleteCrew = (id) => {
     method: "DELETE"
   }).then(result => result.json())
 }
+
+
+//--------------------------------------TARGETS AN OBJECT IN THE CREWS ARRAY AND UPDATES IT----------------------------------------------//
+
+
+export const updateCrew = (crewObj) => {
+  return fetch(`${URL}/crews/${crewObj.id}`, {
+      method: "PATCH",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(crewObj)
+  })
+      .then(response => response.json())
+}

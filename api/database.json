@@ -34,11 +34,11 @@
   ],
   "crews": [
     {
-      "id": 1,
-      "managerId": 1,
+      "ManagerId": 1,
+      "name": "Dummier Crew",
       "hideoutId": 1,
-      "name": "Dummy Name",
-      "description": "Dummy Description"
+      "description": "Dummier Description",
+      "id": 1
     }
   ],
   "cronies": []
