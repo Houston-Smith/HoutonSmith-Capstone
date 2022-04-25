@@ -16,7 +16,7 @@ export const Login = ({setAuthUser}) => {
 
 	const existingUserCheck = () => {
 		// If your json-server URL is different, please change it below!
-		return fetch(`http://localhost:8088/managers?password=${loginUser.password}`)
+		return fetch(`http://localhost:8088/users?password=${loginUser.password}`)
 			.then((res) => res.json())
 			.then((user) => (user.length ? user[0] : false));
 	};
