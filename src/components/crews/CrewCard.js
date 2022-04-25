@@ -8,7 +8,7 @@ export const CrewCard = ({crew, callDeleteCrew}) => {
         <h2>{crew.name}</h2>
         <p>{crew.hideoutId}</p>
         <p>{crew.description}</p>
-        <button type="button" className="btn btn-primary" onClick={() => callDeleteCrew(crew.id)}>Unfriend</button>
+        <button type="button" className="btn btn-primary" onClick={() => callDeleteCrew(crew.id)}>Disband</button>
       </div>
     </div>
   )

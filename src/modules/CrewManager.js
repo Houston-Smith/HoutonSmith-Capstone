@@ -22,6 +22,15 @@ export const getCrewsOfActiveUser = (userId) => {
     .then(response => response.json())
 }
 
+
+//------------------------------------------------RETRIEVES A CREW BY THEIR ID----------------------------------------------------------//
+
+export const getCrewById = (crewId) => {
+  return fetch(`${URL}/crews/${crewId}`)
+  .then(res => res.json())
+}
+
+
 //-----------------------------------------RETRIEVES A LIST OF ALL USERS FROM THE API--------------------------------------------------//
 
 export const getAllUsers = () => {
