@@ -3,6 +3,9 @@ import { Routes, Route, Outlet, Navigate } from "react-router-dom"
 import { Home } from "./home/Home"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
+import { Crews } from "./crews/Crews"
+import { CrewForm } from "./crews/CrewForm"
+import { CrewEditForm } from "./crews/CrewEditForm"
 
 export const ApplicationViews = ({setAuthUser, isAuthenticated, setIsAuthenticated}) => {
   const PrivateOutlet = () => {
@@ -19,6 +22,11 @@ export const ApplicationViews = ({setAuthUser, isAuthenticated, setIsAuthenticat
     <Routes>
       <Route path="/" element={<PrivateOutlet/>} >
       <Route path="/home" element={<Home/>}/>
+
+      <Route path="/crews" element={<Crews/>}/>
+      <Route path="/crews/add" element={<CrewForm/>}/>
+      <Route path="/tasks/:crewId/edit" element={<CrewEditForm/>} />
+
       </Route>
       <Route path="/login" element={<Login setAuthUser={setAuthUser}/> }/>
       <Route path="/register" element={<Register/> }/>
