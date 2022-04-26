@@ -8,22 +8,22 @@
 const URL = "http://localhost:8088"
 
 
-//-----------------------------------------RETRIEVES A LIST OF ALL CREWS FROM THE API--------------------------------------------------//
+//-----------------------------------------RETRIEVES A LIST OF ALL HIDEOUTS FROM THE API--------------------------------------------------//
 
-export const getAllCrews = () => {
-  return fetch (`${URL}/crews`)
+export const getAllHideouts = () => {
+  return fetch (`${URL}/hideouts`)
     .then(response => response.json())
 }
 
-//-----------------------------------------RETRIEVES A LIST OF CREWS OF THE ACTIVE USER FROM THE API-----------------------------------//
+//-----------------------------------------RETRIEVES A LIST OF HIDEOUTS OF THE ACTIVE USER FROM THE API-----------------------------------//
 
-export const getCrewsOfActiveUser = (userId) => {
-  return fetch (`${URL}/crews?userId=${userId}`)
+export const getHideoutsOfActiveUser = (userId) => {
+  return fetch (`${URL}/hideouts?userId=${userId}`)
     .then(response => response.json())
 }
 
 
-//------------------------------------------------RETRIEVES A CREW BY THEIR ID----------------------------------------------------------//
+//------------------------------------------------RETRIEVES A HIDEOUT BY THEIR ID----------------------------------------------------------//
 
 export const getHideoutById = (hideoutId) => {
   return fetch(`${URL}/hideouts/${hideoutId}`)
@@ -31,53 +31,38 @@ export const getHideoutById = (hideoutId) => {
 }
 
 
-//-----------------------------------------RETRIEVES A LIST OF ALL USERS FROM THE API--------------------------------------------------//
+//--------------------------------------ADDS AN OBJECT TO THE HIDEOUT ARRAY THROUGH THE API-----------------------------------------------//
 
-export const getAllUsers = () => {
-  return fetch (`${URL}/users`)
-    .then(response => response.json())
-}
-
-
-//------------------------------------------------RETRIEVES A USER BY THEIR ID----------------------------------------------------------//
-
-export const getUserById = (userId) => {
-  return fetch(`${URL}/users/${userId}`)
-  .then(res => res.json())
-}
-
-//--------------------------------------ADDS AN OBJECT TO THE CREWS ARRAY THROUGH THE API-----------------------------------------------//
-
-export const addCrew = (newCrew) => {
-  return fetch (`${URL}/crews`, {
+export const addHideout = (newHideout) => {
+  return fetch (`${URL}/hideouts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(newCrew)
+    body: JSON.stringify(newHideout)
   }).then(response => response.json())
 }
 
 
-//--------------------------------------TARGETS AN OBJECT IN THE CREWS ARRAY AND DELETES IT----------------------------------------------//
+//--------------------------------------TARGETS AN OBJECT IN THE HIDEOUTS ARRAY AND DELETES IT----------------------------------------------//
 
-export const deleteCrew = (id) => {
-  return fetch(`${URL}/crews/${id}`, {
+export const deleteHideout = (id) => {
+  return fetch(`${URL}/hideouts/${id}`, {
     method: "DELETE"
   }).then(result => result.json())
 }
 
 
-//--------------------------------------TARGETS AN OBJECT IN THE CREWS ARRAY AND UPDATES IT----------------------------------------------//
+//--------------------------------------TARGETS AN OBJECT IN THE HIDEOUTS ARRAY AND UPDATES IT----------------------------------------------//
 
 
-export const updateCrew = (crewObj) => {
-  return fetch(`${URL}/crews/${crewObj.id}`, {
+export const updateHideout = (hideoutObj) => {
+  return fetch(`${URL}/hideouts/${hideoutObj.id}`, {
       method: "PATCH",
       headers: {
           "Content-Type": "application/json"
       },
-      body: JSON.stringify(crewObj)
+      body: JSON.stringify(hideoutObj)
   })
       .then(response => response.json())
 }

@@ -6,6 +6,9 @@ import { Register } from "./auth/Register"
 import { Crews } from "./crews/Crews"
 import { CrewForm } from "./crews/CrewForm"
 import { CrewEditForm } from "./crews/CrewEditForm"
+import { Hideouts } from "./hideouts/Hideouts"
+import { HideoutForm } from "./hideouts/HideoutForm"
+import { HideoutEditForm } from "./hideouts/HideoutEditForm"
 
 export const ApplicationViews = ({setAuthUser, isAuthenticated, setIsAuthenticated}) => {
   const PrivateOutlet = () => {
@@ -25,7 +28,12 @@ export const ApplicationViews = ({setAuthUser, isAuthenticated, setIsAuthenticat
 
       <Route path="/crews" element={<Crews/>}/>
       <Route path="/crews/add" element={<CrewForm/>}/>
-      <Route path="/tasks/:crewId/edit" element={<CrewEditForm/>} />
+      <Route path="/crews/:crewId/edit" element={<CrewEditForm/>} />
+
+      <Route path="/hideouts" element={<Hideouts/>}/>
+      <Route path="/hideouts/add" element={<HideoutForm/>}/>
+      <Route path="/hideouts/:hideoutId/edit" element={<HideoutEditForm/>} />
+
 
       </Route>
       <Route path="/login" element={<Login setAuthUser={setAuthUser}/> }/>

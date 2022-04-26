@@ -32,21 +32,6 @@ export const getCrewById = (crewId) => {
 }
 
 
-//-----------------------------------------RETRIEVES A LIST OF ALL USERS FROM THE API--------------------------------------------------//
-
-export const getAllUsers = () => {
-  return fetch (`${URL}/users`)
-    .then(response => response.json())
-}
-
-
-//------------------------------------------------RETRIEVES A USER BY THEIR ID----------------------------------------------------------//
-
-export const getUserById = (userId) => {
-  return fetch(`${URL}/users/${userId}`)
-  .then(res => res.json())
-}
-
 //--------------------------------------ADDS AN OBJECT TO THE CREWS ARRAY THROUGH THE API-----------------------------------------------//
 
 export const addCrew = (newCrew) => {

@@ -1,0 +1,25 @@
+main {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2em;
+  margin-top: 1em;
+}
+.friend-header button{
+  margin-top:.5em;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  -ms-flex-align: start;
+  margin: 1em;
+  width: 31%;
+  padding: 1em;
+}
