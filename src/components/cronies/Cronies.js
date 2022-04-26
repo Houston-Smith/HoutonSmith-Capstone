@@ -47,7 +47,7 @@ useEffect(() => {
 
 const callDeleteCrony = (id) => {
   deleteCrony(id)
-  .then(() => getHideouts())
+  .then(() => getCronies())
 };
 
 
@@ -57,7 +57,7 @@ const callDeleteCrony = (id) => {
     <main>
       <section className="friend-header">
         <h1>Crony List</h1>
-        <button type="button" className="btn btn-primary" onClick={() => {navigate("/hideouts/add")}}>Create Hideouts</button>
+        <button type="button" className="btn btn-primary" onClick={() => {navigate("/cronies/add")}}>Crony Applications</button>
       </section>
       <section className="card-container">
         {cronies.map(crony =>

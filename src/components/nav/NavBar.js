@@ -28,6 +28,9 @@ export const NavBar = (props) => {
         <li className="nav-item">
           <Link className="nav-link" to="/hideouts">Hideouts</Link>
         </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/cronies">Cronies</Link>
+        </li>
         {props.isAuthenticated && <li className="nav-item">
           <Link className="nav-link" onClick={props.clearUser} to="/">Logout</Link>
         </li>}

@@ -23,6 +23,7 @@ export const CronyForm = () => {
 
 	const [crony, setCrony] = useState({
 		managerId: currentUser,
+		crewId: 0,
 		name: "",
 		species: "",
 		skills: "",
@@ -46,7 +47,7 @@ export const CronyForm = () => {
 
 	//---------------------------------CALL addFriend FUNCTION AND NAVIGATE BACK TO HIDEOUT PAGE ON BUTTON CLICK----------------------------//
 
-	const ClickAddHideout = (event) => {
+	const ClickAddCrony = (event) => {
 		//Prevents the browser from submitting the form
 		event.preventDefault()
 		//Saves crony name, species, and skills in variables
@@ -92,29 +93,40 @@ export const CronyForm = () => {
 
 	return (
 		<form className="friendForm">
-			<h2>Open Hideout</h2>
+			<h2>Hire Crony</h2>
+
 			<fieldset>
 				<div className="form-group">
-					<label htmlFor="name">Hideout Name:</label>
-					<input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Hideout name" value={hideout.name} />
+					<label htmlFor="name">Crony Name:</label>
+					<input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Crony name" value={crony.name} />
 				</div>
 			</fieldset>
+
 			<fieldset>
 				<div className="form-group">
-					<label htmlFor="email">Hideout Location:</label>
-					<input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="Hideout location" value={hideout.location} />
+					<label htmlFor="species">Crony Description:</label>
+					<input type="text" id="species" onChange={handleControlledInputChange} required className="form-control" placeholder="Crony Description" value={crony.species} />
 				</div>
 			</fieldset>
+
 			<fieldset>
 				<div className="form-group">
-					<label htmlFor="name">Hideout Description:</label>
-					<input type="text" id="description" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Hideout description" value={hideout.description} />
+					<label htmlFor="skills">Crony Skillsets:</label>
+					<input type="text" id="skills" onChange={handleControlledInputChange} required className="form-control" placeholder="Crony skills" value={crony.skills} />
 				</div>
 			</fieldset>
+
+			<fieldset>
+				<div className="form-group">
+					<label htmlFor="name">Crony Pay:</label>
+					<input type="number" id="pay" onChange={handleControlledInputChange} required className="form-control" placeholder="Crony Pay" value={crony.pay} />
+				</div>
+			</fieldset>
+
 			<div className="buttons">
 				<button type="button" className="btn btn-primary"
-					onClick={ClickAddHideout}>
-					Open Hideout
+					onClick={ClickAddCrony}>
+					Hire Crony
 				</button>
 				<button type="button" className="btn btn-primary"
 					onClick={ClickCancel}>

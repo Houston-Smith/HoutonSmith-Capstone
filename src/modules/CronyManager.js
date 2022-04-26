@@ -56,7 +56,7 @@ export const deleteCrony = (id) => {
 //--------------------------------------TARGETS AN OBJECT IN THE CRONIES ARRAY AND UPDATES IT----------------------------------------------//
 
 
-export const updateCronies = (cronyObj) => {
+export const updateCrony = (cronyObj) => {
   return fetch(`${URL}/cronies/${cronyObj.id}`, {
       method: "PATCH",
       headers: {

@@ -41,5 +41,15 @@
       "id": 1
     }
   ],
-  "cronies": []
+  "cronies": [
+    {
+      "managerId": 1,
+      "crewId": 0,
+      "name": "Droop",
+      "species": "Goblin",
+      "skills": "Stealth, Sleight of Hand",
+      "pay": "1",
+      "id": 1
+    }
+  ]
 }
