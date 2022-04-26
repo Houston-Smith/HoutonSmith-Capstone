@@ -36,7 +36,7 @@
     {
       "managerId": 1,
       "name": "Dummier Crew",
-      "hideoutId": 1,
+      "hideoutId": "1",
       "description": "Dummier Description",
       "id": 1
     }

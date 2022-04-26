@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Cronies.css";
 import { CronyCard } from "./CronyCard";
 import { deleteCrony, getCroniesOfActiveUser } from "../../modules/CronyManager";

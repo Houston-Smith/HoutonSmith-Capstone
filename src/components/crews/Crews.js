@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Crews.css";
 import { CrewCard } from "./CrewCard";
-import { getAllCrews, deleteCrew, getCrewsOfActiveUser } from "../../modules/CrewManager";
+import { deleteCrew, getCrewsOfActiveUser } from "../../modules/CrewManager";
 
 //----------------------------------------------BROUGHT TO YOU BY HOUSTON SMITH---------------------------------------------------------//
 
