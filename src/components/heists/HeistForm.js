@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { addCrew, getCrewsOfActiveUser } from "../../modules/CrewManager";
-import { getHideoutsOfActiveUser } from "../../modules/HideoutManager";
-import "./CrewForm.css";
+import { addHeist, getHeistsOfActiveUser } from "../../modules/HeistManager";
+import { getCrewsOfActiveUser } from "../../modules/CrewManager";
+
+import "./HeistForm.css";
 
 
 //----------------------------------------------BROUGHT TO YOU BY HOUSTON SMITH---------------------------------------------------------//
 
-export const CrewForm = () => {
+export const HeistForm = () => {
 
 
 	//-------------------------------------SAVE THE CURRENT USER'S ID AND OBJECT AS VARIABLES------------------------------------------------//	
@@ -20,29 +21,30 @@ export const CrewForm = () => {
 	const navigate = useNavigate()
 
 
-	//---------------------------------------SET CREWS, AND CURRENT CREWS ARRAYS WITH EMPTY KEYS-----------------------====------------------//
+	//---------------------------------------SET HEISTS ARRAY WITH EMPTY KEYS-----------------------====------------------//
 
-	const [crew, setCrew] = useState({
+	const [heist, setHeist] = useState({
 		managerId: currentUser,
 		name: "",
-		hideoutId: 0,
 		description: "",
+		location: "",
+		date: "",
+		crewId: 0,
 	})
 
-	const [currentCrew, setCurrentCrews] = useState({})
 
 	//---------------------------------------------------SET EMPTY HIDEOUTS ARRAY-------------------------------------------------------------//
 
-  const [hideouts, setHideouts] = useState([])
+  const [crews, setCrews] = useState([])
 
 
 //-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
 
-const getHideouts = () => {
+const getCrews = () => {
 	//Pull Crews array for the active user from API...
-	return getHideoutsOfActiveUser(currentUser).then(hideouts => {
+	return getCrewsOfActiveUser(currentUser).then(crews => {
 		//...then populate empty crews array with what comes back.
-		setHideouts(hideouts)
+		setCrews(crews)
 	})
 }
 
@@ -50,30 +52,15 @@ const getHideouts = () => {
 //------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
 
 useEffect(() => {
-getHideouts()
+	getCrews()
 }, [])
 
-
-	//-----------------------------------------POPULATE THE CURRENT CREWS ARRAY WITH CREWS FROM THE API---------------------------------------//	
-
-
-  const getUsersCrews = () => {
-    //Pull Crews array for the active user from API...
-    return getCrewsOfActiveUser().then(crews => {
-      //...then populate empty crews array with what comes back.
-      setCurrentCrews(crews)
-    })
-  }
-
-	useEffect(() => {
-		getUsersCrews()
-	}, []);
 
 	//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
 
 	const handleControlledInputChange = (event) => {
 		//Create a copy of the friend array
-		const newCrew = { ...crew }
+		const newHeist = { ...heist }
 		//target the value of the input field
 		let selectedVal = event.target.value
 		// forms always provide values as strings. But we want to save the ids as numbers.
@@ -81,54 +68,50 @@ getHideouts()
 			selectedVal = parseInt(selectedVal)
 		}
 		//Change the property of the input field to a new value
-		newCrew[event.target.id] = selectedVal
+		newHeist[event.target.id] = selectedVal
 		// update state
-		setCrew(newCrew)
+		setHeist(newHeist)
 	}
 
 
 	//---------------------------------CALL addCREW FUNCTION AND NAVIGATE BACK TO CREW PAGE ON BUTTON CLICK----------------------------//
 
-	const ClickAddCrew = (event) => {
+	const ClickAddHeist = (event) => {
 		//Prevents the browser from submitting the form
 		event.preventDefault()
 		//Saves crew name and description in variables
-		const crewName = crew.name
-    const crewDescription = crew.description
-		const hideoutId = crew.hideoutId
-		let newCrew = { ...crew }
-		//Checks the crews array for the current entry and saves it as a variable
-		const isCrew = (currentCrew.find(crew => crew.name === crewName))
+		const heistName = heist.name
+    const heistDescription = heist.description
+		const heistLocation = heist.location
+		const heistDate = heist.date
+		const crewId = heist.crewId
+		let newHeist = { ...heist }
 
 			//Display error message if name input field is empty
-		if (crewName === "") {
-			window.alert("Please input a name for your crew")
-
-			//Display error message if hideout input field is empty
-		} else if (hideoutId === 0) {
-			window.alert("You need to assign your crew to a hideout")	
+		if (heistName === "") {
+			window.alert("Please input a name for your heist")
 
 			//Display error message if description field is empty
-		} else if (crewDescription === "") {
-			window.alert("Please input a description for your crew")
-
-			//Display error message if you have a crew using that name already
-		} 
-     else if (isCrew != undefined) {
-			if (crewName === isCrew.name) {
-				window.alert("You already have a crew by this name")
-			}
+		} else if (heistDescription === "") {
+			window.alert("Please input a description for your heist")
 			
-			else {
-				window.alert("Please input a name and description")
-			}
-
+				//Display error message if description field is empty
+		} else if (heistLocation === "") {
+			window.alert("Please input a location for your heist")
+			
+				//Display error message if description field is empty
+		} else if (heistDate === "") {
+			window.alert("Please input a time for your heist")
+			
+			//Display error message if description input field is empty
+		} else if (crewId === 0) {
+			window.alert("You need to assign a crew to your heist")	
 				
 		} else {
-			//Invoke addCrew passing crew as an argument
+			//Invoke addHeist passing heist as an argument
 			//Navigate back to crews page
-			addCrew(newCrew)
-				.then(() => navigate("/crews"))
+			addHeist(newHeist)
+				.then(() => navigate("/heists"))
 		} 
 	}
 
@@ -136,7 +119,7 @@ getHideouts()
 	//----------------------------------------CANCELS FORM AND NAVIGATES BACK TO CREW PAGE------------------------------------------------//
 
 	const ClickCancel = (event) => {
-		navigate("/crews")
+		navigate("/heists")
 	}
 
 
@@ -144,30 +127,44 @@ getHideouts()
 
 	return (
 		<form className="friendForm">
-			<h2>Assemble Crew</h2>
+			<h2>Plan a Heist</h2>
 
 			<fieldset>
 				<div className="form-group">
-					<label htmlFor="name">Crew Name:</label>
-					<input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Crew name" value={crew.name} />
+					<label htmlFor="name">Name:</label>
+					<input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Heist name" value={heist.name} />
 				</div>
 			</fieldset>
 
 			<fieldset>
 				<div className="form-group">
-					<label htmlFor="email">Crew Description:</label>
-					<input type="text" id="description" onChange={handleControlledInputChange} required className="form-control" placeholder="Crew Description" value={crew.description} />
+					<label htmlFor="description">Description:</label>
+					<input type="text" id="description" onChange={handleControlledInputChange} required className="form-control" placeholder="Heist description" value={heist.description} />
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div className="form-group">
+					<label htmlFor="location">Location:</label>
+					<input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="Heist location" value={heist.location} />
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div className="form-group">
+					<label htmlFor="date">Date:</label>
+					<input type="date" id="date" onChange={handleControlledInputChange} required className="form-control" placeholder="Heist date" value={heist.date} />
 				</div>
 			</fieldset>
 
 			<fieldset>
 				<div className="form-group">
 					<label htmlFor="hideout">Assign Hideout:</label>
-					<select value={crew.hideoutId} name="hideoutId" id="hideoutId" onChange={handleControlledInputChange} className="form-control" >
-						<option disabled hidden value="0">Select a Hideout</option>
-						{hideouts.map(h => (
-						<option key={h.id} value={h.id}>
-								{h.name}
+					<select value={heist.crewId} name="crewId" id="crewId" onChange={handleControlledInputChange} className="form-control" >
+						<option disabled hidden value="0">Assign a Crew</option>
+						{crews.map(c => (
+						<option key={c.id} value={c.id}>
+								{c.name}
 						</option>
 						))}
 					</select>
@@ -176,8 +173,8 @@ getHideouts()
 
 			<div className="buttons">
 				<button type="button" className="btn btn-primary"
-					onClick={ClickAddCrew}>
-					Assemble Crew
+					onClick={ClickAddHeist}>
+					Plan Heist
 				</button>
 				<button type="button" className="btn btn-primary"
 					onClick={ClickCancel}>

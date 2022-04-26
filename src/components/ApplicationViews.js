@@ -12,6 +12,9 @@ import { HideoutEditForm } from "./hideouts/HideoutEditForm"
 import { Cronies } from "./cronies/Cronies"
 import { CronyForm } from "./cronies/CronyForm"
 import { CronyEditForm } from "./cronies/CronyEditForm"
+import { Heist } from "./heists/Heist"
+import { HeistForm } from "./heists/HeistForm"
+import { HeistEditForm } from "./heists/HeistFormEdit"
 
 export const ApplicationViews = ({setAuthUser, isAuthenticated, setIsAuthenticated}) => {
   const PrivateOutlet = () => {
@@ -40,6 +43,10 @@ export const ApplicationViews = ({setAuthUser, isAuthenticated, setIsAuthenticat
       <Route path="/cronies" element={<Cronies/>}/>
       <Route path="/cronies/add" element={<CronyForm/>}/>
       <Route path="/cronies/:cronyId/edit" element={<CronyEditForm/>}/>
+
+      <Route path="/heists" element={<Heist/>}/>
+      <Route path="/heists/add" element={<HeistForm/>}/>
+      <Route path="/heists/:heistId/edit" element={<HeistEditForm/>}/>
 
       </Route>
       <Route path="/login" element={<Login setAuthUser={setAuthUser}/> }/>
