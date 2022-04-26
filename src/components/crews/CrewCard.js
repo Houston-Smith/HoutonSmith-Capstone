@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getHideoutById } from "../../modules/HideoutManager";
@@ -32,7 +31,6 @@ export const CrewCard = ({crew, callDeleteCrew}) => {
       <div className="card-content">
         <h2>{crew.name}</h2>
         <p>Hideout: {hideout.name}</p>
-        <p>{crew.description}</p>
         <p>{crew.description}</p>
         {cronies.map(c => (
 						<p key={c.id}>

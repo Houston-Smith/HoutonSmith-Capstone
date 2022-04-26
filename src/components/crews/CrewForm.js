@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { addCrew, getCrewsOfActiveUser } from "../../modules/CrewManager";
 import { getHideoutsOfActiveUser } from "../../modules/HideoutManager";
-import { getAllUsers, getUserById } from "../../modules/UsersManager";
 import "./CrewForm.css";
 
 
