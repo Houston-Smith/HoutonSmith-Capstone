@@ -41,5 +41,24 @@
       "id": 1
     }
   ],
-  "cronies": []
+  "cronies": [
+    {
+      "managerId": 1,
+      "crewId": 1,
+      "name": "Droop",
+      "species": "Goblin",
+      "skills": "Stealth, Sleight of Hand",
+      "pay": "1",
+      "id": 1
+    },
+    {
+      "managerId": 1,
+      "crewId": 1,
+      "name": "Taz",
+      "species": "Kobold",
+      "skills": "Being awesome, crossbows",
+      "pay": "100",
+      "id": 2
+    }
+  ]
 }

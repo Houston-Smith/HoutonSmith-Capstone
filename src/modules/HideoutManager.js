@@ -18,7 +18,7 @@ export const getAllHideouts = () => {
 //-----------------------------------------RETRIEVES A LIST OF HIDEOUTS OF THE ACTIVE USER FROM THE API-----------------------------------//
 
 export const getHideoutsOfActiveUser = (userId) => {
-  return fetch (`${URL}/hideouts?userId=${userId}`)
+  return fetch (`${URL}/hideouts?managerId=${userId}`)
     .then(response => response.json())
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import { getHideoutById, updateHideout } from "../../modules/HideoutManager";
+import "./HideoutForm.css";
 
 export const HideoutEditForm = () => {
   const [hideout, setHideout] = useState({ name: "", location: "", description: "" });

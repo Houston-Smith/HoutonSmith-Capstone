@@ -43,6 +43,7 @@ useEffect(() => {
   getCrews()
 }, [])
 
+
 //--------------------------------------------CALLS THE deleteCrew FUNCTION-------------------------------------------------------------//
 
 const callDeleteCrew = (id) => {
