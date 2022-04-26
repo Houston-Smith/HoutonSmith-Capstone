@@ -1,9 +1,35 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { getCrewById } from "../../modules/CrewManager";
+import { useState, useEffect } from "react";
 
 export const CronyCard = ({crony, callDeleteCrony}) => {
 
   const navigate = useNavigate()
+
+  //---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
+
+  const [crew, setCrew] = useState([])
+
+  
+
+//-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+
+  const getCrew = () => {
+    //Pull Crews array for the active user from API...
+    return getCrewById(crony.crewId).then(crew => {
+      //...then populate empty crews array with what comes back.
+      setCrew(crew)
+    })
+  }
+
+
+//------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
+
+useEffect(() => {
+  getCrew()
+}, [])
+
 
   return (
     <div className="card">
@@ -12,6 +38,7 @@ export const CronyCard = ({crony, callDeleteCrony}) => {
         <p>{crony.species}</p>
         <p><b>Skills</b>: {crony.skills}</p>
         <p><b>Pay</b>: {crony.pay} gold</p>
+        <p><b>Assigned</b>: {crew.name}</p>
         <button type="button" className="btn btn-primary" onClick={() => callDeleteCrony(crony.id)}>Fire Crony</button>
         <button type="button" className="btn btn-primary" onClick={() => {navigate(`/cronies/${crony.id}/edit`)}}>Edit</button>
       </div>

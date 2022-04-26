@@ -44,7 +44,7 @@
   "cronies": [
     {
       "managerId": 1,
-      "crewId": 0,
+      "crewId": 1,
       "name": "Droop",
       "species": "Goblin",
       "skills": "Stealth, Sleight of Hand",
@@ -53,7 +53,7 @@
     },
     {
       "managerId": 1,
-      "crewId": 0,
+      "crewId": 1,
       "name": "Taz",
       "species": "Kobold",
       "skills": "Being awesome, crossbows",
