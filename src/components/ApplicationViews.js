@@ -28,12 +28,11 @@ export const ApplicationViews = ({setAuthUser, isAuthenticated, setIsAuthenticat
 
       <Route path="/crews" element={<Crews/>}/>
       <Route path="/crews/add" element={<CrewForm/>}/>
-      <Route path="/crews/:crewId/edit" element={<CrewEditForm/>} />
+      <Route path="/crews/:crewId/edit" element={<CrewEditForm/>}/>
 
       <Route path="/hideouts" element={<Hideouts/>}/>
       <Route path="/hideouts/add" element={<HideoutForm/>}/>
-      <Route path="/hideouts/:hideoutId/edit" element={<HideoutEditForm/>} />
-
+      <Route path="/hideouts/:hideoutId/edit" element={<HideoutEditForm/>}/>
 
       </Route>
       <Route path="/login" element={<Login setAuthUser={setAuthUser}/> }/>
