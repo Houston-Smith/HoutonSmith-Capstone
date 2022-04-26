@@ -18,7 +18,7 @@ export const getAllCronies = () => {
 //-----------------------------------------RETRIEVES A LIST OF CRONIES OF THE ACTIVE USER FROM THE API-----------------------------------//
 
 export const getCroniesOfActiveUser = (userId) => {
-  return fetch (`${URL}/cronies?userId=${userId}`)
+  return fetch (`${URL}/cronies?managerId=${userId}`)
     .then(response => response.json())
 }
 

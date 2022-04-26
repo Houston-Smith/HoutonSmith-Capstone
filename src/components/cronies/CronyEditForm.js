@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import { getCronyById, updateCrony } from "../../modules/CronyManager";
+import { getCrewsOfActiveUser } from "../../modules/CrewManager";
 import "./CronyForm.css";
 
 export const CronyEditForm = () => {
@@ -10,8 +11,41 @@ export const CronyEditForm = () => {
   const {cronyId} = useParams();
   const navigate = useNavigate();
 
+//-------------------------------------SAVE THE CURRENT USER'S ID AND OBJECT AS VARIABLES------------------------------------------------//	
+
+	let userObj = JSON.parse(sessionStorage.getItem("nutshell_user"))
+	let currentUser = userObj.id;
+
+
+//---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
+
+  const [crews, setCrews] = useState([])
+
+
+//-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+
+const getCrews = () => {
+	//Pull Crews array for the active user from API...
+	return getCrewsOfActiveUser(currentUser).then(crews => {
+		//...then populate empty crews array with what comes back.
+		setCrews(crews)
+	})
+}
+
+
+//------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
+
+useEffect(() => {
+getCrews()
+}, [])
+
+
+
   const handleFieldChange = evt => {
     const stateToChange = { ...crony };
+    if (evt.target.id.includes("Id")) {
+			evt.target.value = parseInt(evt.target.value)
+		}
     stateToChange[evt.target.id] = evt.target.value;
     setCrony(stateToChange);
   };
@@ -65,7 +99,12 @@ export const CronyEditForm = () => {
 			<fieldset>
 				<div className="form-group">
 					<label htmlFor="species">Crony Description:</label>
-					<input type="text" id="species" onChange={handleFieldChange} required className="form-control" placeholder="Crony Description" value={crony.species} />
+					<select type="text" id="species" onChange={handleFieldChange} required className="form-control" placeholder="Crony Description" value={crony.species} >
+						<option disabled hidden value="">Select a Description</option>
+						<option value="Goblin">Goblin</option>
+						<option value="Kenku">Kenku</option>
+						<option value="Kobold">Kobold</option>
+					</select>
 				</div>
 			</fieldset>
 
@@ -80,6 +119,20 @@ export const CronyEditForm = () => {
 				<div className="form-group">
 					<label htmlFor="name">Crony Pay:</label>
 					<input type="number" id="pay" onChange={handleFieldChange} required className="form-control" placeholder="Crony Pay" value={crony.pay} />
+				</div>
+			</fieldset>
+
+      <fieldset>
+				<div className="form-group">
+					<label htmlFor="crew">Assign to crew:</label>
+					<select value={crony.crewId} name="crewId" id="crewId" onChange={handleFieldChange} className="form-control" >
+						<option value="0">Select a crew</option>
+						{crews.map(c => (
+						<option key={c.id} value={c.id}>
+								{c.name}
+						</option>
+						))}
+					</select>
 				</div>
 			</fieldset>
 

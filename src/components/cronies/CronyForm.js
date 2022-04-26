@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { addCrony } from "../../modules/CronyManager";
+import { getCrewsOfActiveUser } from "../../modules/CrewManager";
 import "./CronyForm.css";
 
 
@@ -31,6 +32,29 @@ export const CronyForm = () => {
 	})
 
 
+//---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
+
+  const [crews, setCrews] = useState([])
+
+
+//-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+
+const getCrews = () => {
+	//Pull Crews array for the active user from API...
+	return getCrewsOfActiveUser(currentUser).then(crews => {
+		//...then populate empty crews array with what comes back.
+		setCrews(crews)
+	})
+}
+
+
+//------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
+
+useEffect(() => {
+getCrews()
+}, [])
+
+
 	//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
 
 	const handleControlledInputChange = (event) => {
@@ -38,9 +62,14 @@ export const CronyForm = () => {
 		const newCrony = { ...crony }
 		//target the value of the input field
 		let selectedVal = event.target.value
+		// forms always provide values as strings. But we want to save the ids as numbers.
+		if (event.target.id.includes("Id")) {
+			selectedVal = parseInt(selectedVal)
+		}
 		//Change the property of the input field to a new value
 		newCrony[event.target.id] = selectedVal
 		// update state
+		console.log(newCrony)
 		setCrony(newCrony)
 	}
 
@@ -55,6 +84,7 @@ export const CronyForm = () => {
     const cronySpecies = crony.species
 		const cronySkills = crony.skills
 		const cronyPay = crony.pay
+		const crewId = crony.crewId
 		let newCrony = { ...crony }
 	
 
@@ -72,6 +102,9 @@ export const CronyForm = () => {
 				
 		} else if (cronyPay === 0 && cronyPay < 0) {
 			window.alert("You need to pay your cronies, cheapskate")
+				
+		} else if (crewId === 0) {
+			window.alert("You need to assign your crony to a crew")
 				
 		} else {
 			//Invoke addCrony passing hideout as an argument
@@ -105,7 +138,12 @@ export const CronyForm = () => {
 			<fieldset>
 				<div className="form-group">
 					<label htmlFor="species">Crony Description:</label>
-					<input type="text" id="species" onChange={handleControlledInputChange} required className="form-control" placeholder="Crony Description" value={crony.species} />
+					<select type="text" id="species" onChange={handleControlledInputChange} required className="form-control" placeholder="Crony Description" value={crony.species} >
+						<option disabled hidden value="">Select a Description</option>
+						<option value="Goblin">Goblin</option>
+						<option value="Kenku">Kenku</option>
+						<option value="Kobold">Kobold</option>
+					</select>
 				</div>
 			</fieldset>
 
@@ -120,6 +158,20 @@ export const CronyForm = () => {
 				<div className="form-group">
 					<label htmlFor="name">Crony Pay:</label>
 					<input type="number" id="pay" onChange={handleControlledInputChange} required className="form-control" placeholder="Crony Pay" value={crony.pay} />
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div className="form-group">
+					<label htmlFor="crew">Assign to crew:</label>
+					<select value={crony.crewId} name="crewId" id="crewId" onChange={handleControlledInputChange} className="form-control" >
+						<option value="0">Select a crew</option>
+						{crews.map(c => (
+						<option key={c.id} value={c.id}>
+								{c.name}
+						</option>
+						))}
+					</select>
 				</div>
 			</fieldset>
 

@@ -50,6 +50,15 @@
       "skills": "Stealth, Sleight of Hand",
       "pay": "1",
       "id": 1
+    },
+    {
+      "managerId": 1,
+      "crewId": 0,
+      "name": "Taz",
+      "species": "Kobold",
+      "skills": "Being awesome, crossbows",
+      "pay": "100",
+      "id": 2
     }
   ]
 }

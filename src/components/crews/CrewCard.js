@@ -24,7 +24,7 @@ export const CrewCard = ({crew, callDeleteCrew}) => {
         <p>{hideout.name}</p>
         <p>{crew.description}</p>
         <button type="button" className="btn btn-primary" onClick={() => callDeleteCrew(crew.id)}>Disband</button>
-        <button type="button" className="btn btn-primary" onClick={() => {navigate(`/tasks/${crew.id}/edit`)}}>Edit</button>
+        <button type="button" className="btn btn-primary" onClick={() => {navigate(`/crews/${crew.id}/edit`)}}>Edit</button>
       </div>
     </div>
   )
