@@ -126,7 +126,7 @@ getCrews()
 				<div className="form-group">
 					<label htmlFor="crew">Assign to crew:</label>
 					<select value={crony.crewId} name="crewId" id="crewId" onChange={handleFieldChange} className="form-control" >
-						<option value="0">Select a crew</option>
+						<option disabled hidden value="0">Select a crew</option>
 						{crews.map(c => (
 						<option key={c.id} value={c.id}>
 								{c.name}
