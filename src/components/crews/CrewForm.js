@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { addCrew, getAllUsers, getAllCrews, getUserById, getCrewsOfActiveUser } from "../../modules/CrewManager";
+import { addCrew, getCrewsOfActiveUser } from "../../modules/CrewManager";
+import { getAllUsers, getUserById } from "../../modules/UsersManager";
 import "./CrewForm.css";
 
 
@@ -19,7 +20,7 @@ export const CrewForm = () => {
 	const navigate = useNavigate()
 
 
-	//------------------------SET FRIENDS, USERS, CURRENT FRIENDS, AND CURRENT USER ARRAYS WITH EMPTY KEYS------------------------------------//
+	//---------------------------------------SET CREWS, AND CURRENT CREWS ARRAYS WITH EMPTY KEYS-----------------------====------------------//
 
 	const [crew, setCrew] = useState({
 		managerId: currentUser,
@@ -28,33 +29,10 @@ export const CrewForm = () => {
 		description: "",
 	})
 
-	const [currentUserObj, setCurrentUserObj] = useState({})
-
-	const [users, setUsers] = useState({})
-
 	const [currentCrew, setCurrentCrews] = useState({})
 
 
-	//-----------------------------------------POPULATE THE USERS ARRAY WITH USERS FROM THE API------------------------------------------------//
-
-	useEffect(() => {
-		getAllUsers()
-			.then(users => {
-				setUsers(users)
-			});
-	}, []);
-
-
-	//------------------------------------POPULATE THE CURRENT USER OBJ ARRAY WITH THE CURRENT USER---------------------------------------------//
-
-	useEffect(() => {
-		getUserById(currentUser)
-			.then(user => {
-				setCurrentUserObj(user)
-			});
-	}, []);
-
-	//-----------------------------------------POPULATE THE CURRENT FRIENDS ARRAY WITH FRIENDS FROM THE API---------------------------------------//	
+	//-----------------------------------------POPULATE THE CURRENT CREWS ARRAY WITH CREWS FROM THE API---------------------------------------//	
 
 
   const getUsersCrews = () => {
@@ -83,57 +61,55 @@ export const CrewForm = () => {
 	}
 
 
-	//---------------------------------CALL addFriend FUNCTION AND NAVIGATE BACK TO FRIEND PAGE ON BUTTON CLICK----------------------------//
+	//---------------------------------CALL addCREW FUNCTION AND NAVIGATE BACK TO CREW PAGE ON BUTTON CLICK----------------------------//
 
-	const ClickAddFriend = (event) => {
+	const ClickAddCrew = (event) => {
 		//Prevents the browser from submitting the form
 		event.preventDefault()
-		//Saves friend name and email in variables
+		//Saves crew name and description in variables
 		const crewName = crew.name
     const crewDescription = crew.description
 		let newCrew = { ...crew }
-		//Checks the users array for the current entry and saves it as a variable
+		//Checks the crews array for the current entry and saves it as a variable
 		const isCrew = (currentCrew.find(crew => crew.name === crewName))
 
-		//Display error message if input fields are left empty
+			//Display error message if name input field is empty
 		if (crewName === "") {
 			window.alert("Please input a name for your crew")
 
-			//Display error message if new friend is already on your friends list
+			//Display error message if description field is empty
 		}else if (crewDescription === "") {
 			window.alert("Please input a description for your crew")
 
-			//Display error message if new friend is already on your friends list
+			//Display error message if you have a crew using that name already
 		} 
      else if (isCrew != undefined) {
 			if (crewName === isCrew.name) {
 				window.alert("You already have a crew by this name")
 			}
-			//...or if they do not exist
+			
 			else {
 				window.alert("Please input a name and description")
 			}
 
 				
 		} else {
-			//Invoke addFriend passing friend as an argument
-			//Navigate back to friends page
+			//Invoke addCrew passing crew as an argument
+			//Navigate back to crews page
 			addCrew(newCrew)
 				.then(() => navigate("/crews"))
-
-			//Display error message if new friend does not exist
 		} 
 	}
 
 
-	//----------------------------------------CANCELS FORM AND NAVIGATES BACK TO FRIEND PAGE------------------------------------------------//
+	//----------------------------------------CANCELS FORM AND NAVIGATES BACK TO CREW PAGE------------------------------------------------//
 
 	const ClickCancel = (event) => {
 		navigate("/crews")
 	}
 
 
-	//----------------------------------------------GENERATE HTML FOR NEW FRIEND FORM-------------------------------------------------------//
+	//----------------------------------------------GENERATE HTML FOR NEW CREW FORM-------------------------------------------------------//
 
 	return (
 		<form className="friendForm">
@@ -152,7 +128,7 @@ export const CrewForm = () => {
 			</fieldset>
 			<div className="buttons">
 				<button type="button" className="btn btn-primary"
-					onClick={ClickAddFriend}>
+					onClick={ClickAddCrew}>
 					Assemble Crew
 				</button>
 				<button type="button" className="btn btn-primary"

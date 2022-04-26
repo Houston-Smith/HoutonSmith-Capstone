@@ -19,8 +19,7 @@ export const CrewEditForm = () => {
     evt.preventDefault()
     setIsLoading(true);
 
-    // default values for locationId and customerId
-    // if you already have these components/modules in place, you will need to include the correct information
+
     const editedCrew = {
       id: crewId,
 	    managerId: crew.managerId,
@@ -29,7 +28,7 @@ export const CrewEditForm = () => {
       description: crew.description,
     };
 
-  //pass the editedAnimal object to the database
+
   updateCrew(editedCrew)
     .then(() => navigate("/crews")
     )

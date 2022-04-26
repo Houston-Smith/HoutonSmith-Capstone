@@ -51,7 +51,7 @@ const callDeleteCrew = (id) => {
 };
 
 
- //--------------------------------GENERATE HTML FOR CREWS PAGE AND GENERATE FRIEND CARDS------------------------------------------------// 
+ //--------------------------------GENERATE HTML FOR CREWS PAGE AND GENERATE CREW CARDS------------------------------------------------// 
 
   return (
     <main>
