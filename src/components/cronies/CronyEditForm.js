@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import { getCronyById, updateCrony } from "../../modules/CronyManager";
 import { getCrewsOfActiveUser } from "../../modules/CrewManager";
+import { getAllSkills } from "../../modules/SkillManager";
 import "./CronyForm.css";
 
 export const CronyEditForm = () => {
@@ -20,6 +21,7 @@ export const CronyEditForm = () => {
 //---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
 
   const [crews, setCrews] = useState([])
+  const [skills, setSkills] = useState([])
 
 
 //-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
@@ -32,6 +34,13 @@ const getCrews = () => {
 	})
 }
 
+const getSkills = () => {
+	//Pull Crews array for the active user from API...
+	return getAllSkills().then(skills => {
+		//...then populate empty crews array with what comes back.
+		setSkills(skills)
+	})
+}
 
 //------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
 
@@ -39,6 +48,9 @@ useEffect(() => {
 getCrews()
 }, [])
 
+useEffect(() => {
+  getSkills()
+    }, [])
 
 
   const handleFieldChange = evt => {
@@ -61,7 +73,9 @@ getCrews()
       crewId: crony.crewId,
       name: crony.name,
       species: crony.species,
-      skills: crony.skills,
+      skill1: crony.skill1,
+      skill2: crony.skill2,
+      additionalSkills: crony.additionalSkills,
       pay: crony.pay
     };
 
@@ -110,8 +124,38 @@ getCrews()
 
 			<fieldset>
 				<div className="form-group">
-					<label htmlFor="skills">Crony Skillsets:</label>
-					<input type="text" id="skills" onChange={handleFieldChange} required className="form-control" placeholder="Crony skills" value={crony.skills} />
+					<label htmlFor="skills">Special Skills:</label>
+					<select value={crony.skill1} name="skill1" id="skill1" onChange={handleFieldChange} className="form-control" >
+						<option disabled hidden value="">Select a skill</option>
+						<option value="">None</option>
+						{skills.map(s => (
+						<option key={s.id} value={s.name}>
+								{s.name}
+						</option>
+						))}
+					</select>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div className="form-group">
+					<label htmlFor="skills">Special Skills:</label>
+					<select value={crony.skill2} name="skill2" id="skill2" onChange={handleFieldChange} className="form-control" >
+						<option disabled hidden value="">Select a skill</option>
+						<option value="">None</option>
+						{skills.map(s => (
+						<option key={s.id} value={s.name}>
+								{s.name}
+						</option>
+						))}
+					</select>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div className="form-group">
+					<label htmlFor="additionalSkills">Additional Skills:</label>
+					<input type="text" id="additionalSkills" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Additional Skills" value={crony.additionalSkills} />
 				</div>
 			</fieldset>
 
