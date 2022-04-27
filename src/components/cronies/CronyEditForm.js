@@ -155,7 +155,7 @@ useEffect(() => {
 			<fieldset>
 				<div className="form-group">
 					<label htmlFor="additionalSkills">Additional Skills:</label>
-					<input type="text" id="additionalSkills" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Additional Skills" value={crony.additionalSkills} />
+					<input type="text" id="additionalSkills" onChange={handleFieldChange} required className="form-control" placeholder="Additional Skills" value={crony.additionalSkills} />
 				</div>
 			</fieldset>
 
