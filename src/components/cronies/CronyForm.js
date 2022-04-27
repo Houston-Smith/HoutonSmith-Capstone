@@ -60,6 +60,10 @@ const getSkills = () => {
 	})
 }
 
+const filterSkills = (skills, skill1, skill2, selection) => {
+	const filtered = skills.filter(skill => skill.name != skill1 && skill.name != skill2 && skill.name !=selection)
+	return (filtered)
+}
 
 //------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
 
@@ -68,7 +72,7 @@ getCrews()
 }, [])
 
 useEffect(() => {
-getSkills()
+	getSkills()
 	}, [])
 
 	//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
@@ -81,6 +85,17 @@ getSkills()
 		// forms always provide values as strings. But we want to save the ids as numbers.
 		if (event.target.id.includes("Id")) {
 			selectedVal = parseInt(selectedVal)
+		}
+		if (event.target.id.includes("skill")) {
+			let skill1 = crony.skill1
+			let skill2 = crony.skill2
+			let selection = event.target.value
+
+			return getAllSkills().then(skills => {
+				//...then populate empty crews array with what comes back.
+				setSkills(skills)
+			})
+
 		}
 		//Change the property of the input field to a new value
 		newCrony[event.target.id] = selectedVal
