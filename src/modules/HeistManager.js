@@ -31,6 +31,12 @@ export const getHeistById = (heistId) => {
   .then(res => res.json())
 }
 
+//-----------------------------------------RETRIEVES A LIST OF HEISTS OF THE ACTIVE CREW FROM THE API-----------------------------------//
+
+export const getHeistsByCrew = (crewId) => {
+  return fetch (`${URL}/heists?crewId=${crewId}`)
+    .then(response => response.json())
+}
 
 //--------------------------------------ADDS AN OBJECT TO THE HEIST ARRAY THROUGH THE API-----------------------------------------------//
 

@@ -18,7 +18,7 @@ export const CrewEditForm = () => {
   const {crewId} = useParams();
   const navigate = useNavigate();
 
-	//---------------------------------------------------SET EMPTY HIDEOUTS ARRAY-------------------------------------------------------------//
+//---------------------------------------------------SET EMPTY HIDEOUTS ARRAY-------------------------------------------------------------//
 
   const [hideouts, setHideouts] = useState([])
 
