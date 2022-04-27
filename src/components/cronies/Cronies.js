@@ -2,8 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cronies.css";
 import { CronyCard } from "./CronyCard";
-import { deleteCrony, getCroniesOfActiveUser } from "../../modules/CronyManager";
-import { getCroniesByCrew } from "../../modules/CronyManager";
+import { deleteCrony, getCroniesOfActiveUser, getCroniesByCrew } from "../../modules/CronyManager";
 import { getAllCrews } from "../../modules/CrewManager";
 
 //----------------------------------------------BROUGHT TO YOU BY HOUSTON SMITH---------------------------------------------------------//
