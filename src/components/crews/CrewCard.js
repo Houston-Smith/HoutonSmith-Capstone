@@ -14,7 +14,6 @@ export const CrewCard = ({crew, callDeleteCrew}) => {
   useEffect(() => {
     getCroniesByCrew(crew.id)
       .then(cronyList => {
-        console.log(cronyList)
         setCronies(cronyList);
       });
   }, []);

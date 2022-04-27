@@ -35,6 +35,7 @@ export const CrewDetails = () => {
   const [crew, setCrew] = useState({ name: "", });
   const [heists, setHeists] = useState([])
 
+  
 //-----------------------------------POPULATE EMPTY ARRAYS WITH OBJECTS FROM THE API------------------------------------------------------//
 
   const getCronies = () => {
@@ -48,8 +49,6 @@ export const CrewDetails = () => {
   const getCrew = () => {
     //Pull Cronies array for the active user from API...
     return getCrewById(crewId).then(crew => {
-      console.log(crew.hideout.name)
-      console.log(crew.name)
       //...then populate empty cronies array with what comes back.
       setCrew(crew)
     })
@@ -74,7 +73,6 @@ useEffect(() => {
   getCrew()
 }, [])
 
-
 useEffect(() => {
   getHeists()
 }, [])
@@ -89,7 +87,7 @@ useEffect(() => {
         <h1>{crew.name} Details</h1>
         <section className="card-container">
       </section>
-        {/* <p>{crew.hideout.name}</p> */}
+        <p>{crew.hideout?.name}</p>
         <p>{crew.description}</p>
         <h2>Crew Members:</h2>
       </section>
