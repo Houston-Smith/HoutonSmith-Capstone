@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { addCrony } from "../../modules/CronyManager";
 import { getCrewsOfActiveUser } from "../../modules/CrewManager";
+import { getAllSkills } from "../../modules/SkillManager";
 import "./CronyForm.css";
 
 
@@ -27,7 +28,9 @@ export const CronyForm = () => {
 		crewId: 0,
 		name: "",
 		species: "",
-		skills: "",
+		skill1: "",
+		skill2: "",
+		additionalSkills: "",
 		pay: 0,
 	})
 
@@ -35,6 +38,8 @@ export const CronyForm = () => {
 //---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
 
   const [crews, setCrews] = useState([])
+	const [skills, setSkills] = useState([])
+
 
 
 //-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
@@ -47,6 +52,13 @@ const getCrews = () => {
 	})
 }
 
+const getSkills = () => {
+	//Pull Crews array for the active user from API...
+	return getAllSkills().then(skills => {
+		//...then populate empty crews array with what comes back.
+		setSkills(skills)
+	})
+}
 
 //------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
 
@@ -54,6 +66,9 @@ useEffect(() => {
 getCrews()
 }, [])
 
+useEffect(() => {
+	getSkills()
+	}, [])
 
 	//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
 
@@ -66,6 +81,7 @@ getCrews()
 		if (event.target.id.includes("Id")) {
 			selectedVal = parseInt(selectedVal)
 		}
+
 		//Change the property of the input field to a new value
 		newCrony[event.target.id] = selectedVal
 		// update state
@@ -81,7 +97,8 @@ getCrews()
 		//Saves crony name, species, and skills in variables
 		const cronyName = crony.name
     const cronySpecies = crony.species
-		const cronySkills = crony.skills
+		const cronySkill1 = crony.skill1
+		const cronySkill2 = crony.skill2
 		const cronyPay = crony.pay
 		const crewId = crony.crewId
 		let newCrony = { ...crony }
@@ -95,10 +112,15 @@ getCrews()
 		} else if (cronySpecies === "") {
 			window.alert("Please input a description for your Crony")
 
-			//Display error message if skills input field is left empty
-		} else if (cronySkills === "") {
-			window.alert("Please input the skills of your Crony")
-				
+		}	else if (cronySkill1 === cronySkill2) {
+				window.alert("Can't select the same skill twice")
+		
+		}	else if (cronySkill1 === crony.additionalSkills) {
+				window.alert("Can't select the same skill twice")
+		
+		}	else if (cronySkill2 === crony.additionalSkills) {
+				window.alert("Can't select the same skill twice")		
+
 		} else if (cronyPay === 0 && cronyPay < 0) {
 			window.alert("You need to pay your cronies, cheapskate")
 				
@@ -148,8 +170,38 @@ getCrews()
 
 			<fieldset>
 				<div className="form-group">
-					<label htmlFor="skills">Crony Skillsets:</label>
-					<input type="text" id="skills" onChange={handleControlledInputChange} required className="form-control" placeholder="Crony skills" value={crony.skills} />
+					<label htmlFor="skills">Special Skills:</label>
+					<select value={crony.skill1} name="skill1" id="skill1" onChange={handleControlledInputChange} className="form-control" >
+						<option disabled hidden value="">Select a skill</option>
+						<option value="">None</option>
+						{skills.map(s => (
+						<option key={s.id} value={s.name}>
+								{s.name}
+						</option>
+						))}
+					</select>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div className="form-group">
+					<label htmlFor="skills">Special Skills:</label>
+					<select value={crony.skill2} name="skill2" id="skill2" onChange={handleControlledInputChange} className="form-control" >
+						<option disabled hidden value="">Select a skill</option>
+						<option value="">None</option>
+						{skills.map(s => (
+						<option key={s.id} value={s.name}>
+								{s.name}
+						</option>
+						))}
+					</select>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<div className="form-group">
+					<label htmlFor="additionalSkills">Additional Skills:</label>
+					<input type="text" id="additionalSkills" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Additional Skills" value={crony.additionalSkills} />
 				</div>
 			</fieldset>
 

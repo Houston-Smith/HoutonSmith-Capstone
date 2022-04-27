@@ -10,7 +10,27 @@ export const DetailsCronyCard = ({crony}) => {
       <div className="card-content">
         <h2>{crony.name}</h2>
         <p>{crony.species}</p>
-        <p><b>Skills</b>: {crony.skills}</p>
+        <p><b>Skill Sets</b>:</p>
+          {crony.skill1 === ""
+              ? <p>{crony.skill2}</p>
+              : <p></p>
+            } 
+          {crony.skill2 === ""
+              ? <p>{crony.skill1}</p>
+              : <p></p>
+            } 
+          {crony.skill1 === "" && crony.skill2 === ""
+              ? <p>None</p>
+              : <p></p>
+            }
+          {crony.skill1 != "" && crony.skill2 != ""
+              ? <p>{crony.skill1}, {crony.skill2}</p>
+              : <p></p>
+            }          
+        {crony.additionalSkills === ""
+              ? <p></p>
+              : <p><b>Additional Skills</b>: {crony.additionalSkills}</p>
+            } 
         <p><b>Pay</b>: {crony.pay} gold</p>
       </div>
     </div>
