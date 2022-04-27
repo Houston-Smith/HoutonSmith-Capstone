@@ -40,35 +40,42 @@
       "description": "Dummier Description",
       "location": "Dummier Location",
       "isOcupied": false
+    },
+    {
+      "managerId": 2,
+      "name": "Sunflower Grey",
+      "description": "The yard needs to be mowed. Get to it ya slouch. ",
+      "location": "Pleasant View, TN",
+      "id": 2
     }
   ],
   "crews": [
     {
-      "managerId": 0,
-      "name": "0",
-      "hideoutId": "0",
-      "description": "0",
-      "id": 0
+      "managerId": 1,
+      "name": "1",
+      "hideoutId": "1",
+      "description": "1",
+      "id": 1
     },
     {
       "managerId": 1,
       "name": "Dummier Crew",
       "hideoutId": "1",
       "description": "Dummier Description",
-      "id": 1
+      "id": 2
     },
     {
       "managerId": 1,
       "name": "Sunflower Grey",
       "hideoutId": 1,
       "description": "The yard needs to be mowed. Get to it ya slouch. ",
-      "id": 2
+      "id": 3
     }
   ],
   "cronies": [
     {
       "managerId": 1,
-      "crewId": "0",
+      "crewId": "1",
       "name": "Droop",
       "species": "Goblin",
       "skill1": "Animal Whisperer",
@@ -90,7 +97,7 @@
     },
     {
       "managerId": 1,
-      "crewId": "0",
+      "crewId": "1",
       "name": "Sunflower Grey",
       "species": "Kenku",
       "skill1": "Animal Whisperer",
@@ -98,6 +105,17 @@
       "additionalSkills": "",
       "pay": 0,
       "id": 3
+    },
+    {
+      "managerId": 2,
+      "crewId": "1",
+      "name": "Sunflower Grey",
+      "species": "Kenku",
+      "skill1": "Acrobat",
+      "skill2": "Arcana Expert",
+      "additionalSkills": "",
+      "pay": "3",
+      "id": 4
     }
   ],
   "skills": [

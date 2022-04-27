@@ -25,7 +25,7 @@ export const CronyForm = () => {
 
 	const [crony, setCrony] = useState({
 		managerId: currentUser,
-		crewId: "0",
+		crewId: "1",
 		name: "",
 		species: "",
 		skill1: "",
@@ -125,7 +125,7 @@ useEffect(() => {
 			window.alert("You need to pay your cronies, cheapskate")
 		
 		} else if (crewId === "") {
-			crewId.id = 0	
+			crewId.id = 1	
 				
 		} else {
 			//Invoke addCrony passing hideout as an argument
@@ -217,7 +217,7 @@ useEffect(() => {
 					<label htmlFor="crew">Assign to crew:</label>
 					<select value={crony.crewId} name="crewId" id="crewId" onChange={handleControlledInputChange} className="form-control" >
 						<option disabled hidden value="">Select a crew</option>
-						<option value="0">None</option>
+						<option value="1">None</option>
 						{crews.map(c => (
 						<option key={c.id} value={c.id}>
 								{c.name}

@@ -171,7 +171,7 @@ useEffect(() => {
 					<label htmlFor="crew">Assign to crew:</label>
 					<select value={crony.crewId} name="crewId" id="crewId" onChange={handleFieldChange} className="form-control" >
 						<option disabled hidden value="">Select a crew</option>
-            <option value="0">None</option>
+            <option value="1">None</option>
 						{crews.map(c => (
 						<option key={c.id} value={c.id}>
 								{c.name}
