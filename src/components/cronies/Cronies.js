@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./Cronies.css";
 import { CronyCard } from "./CronyCard";
 import { deleteCrony, getCroniesOfActiveUser, getCroniesByCrew } from "../../modules/CronyManager";
-import { getAllCrews } from "../../modules/CrewManager";
+import { getCrewsOfActiveUser } from "../../modules/CrewManager";
 
 //----------------------------------------------BROUGHT TO YOU BY HOUSTON SMITH---------------------------------------------------------//
 
@@ -39,7 +39,7 @@ export const Cronies = () => {
 
   const getCrews = () => {
     //Pull Crews array for the active user from API...
-    return getAllCrews(currentUser).then(crews => {
+    return getCrewsOfActiveUser(currentUser).then(crews => {
       //...then populate empty crews array with what comes back.
       setCrews(crews)
     })
@@ -63,9 +63,18 @@ const callDeleteCrony = (id) => {
   .then(() => getCronies())
 };
 
-
+const cronyFilter = (crewId) => {
+  
+  return getCroniesOfActiveUser(currentUser)
+    .then(cronies =>
+      cronies.filter(crony => crony.crewId === crewId))
+  
+}
 
 const filterCronies = (event) => {
+  
+  
+
 
   // save the input as a variable
   let selectedVal = event.target.value
@@ -76,8 +85,9 @@ const filterCronies = (event) => {
 
   //if selected value is not an empy string: Filter by the crew Id
   if (selectedVal != "") {
-  getCroniesOfActiveUser(selectedVal)
-    .then(cronies => setCronies(cronies))
+  cronyFilter(selectedVal)
+    .then(cronies =>
+    setCronies(cronies))
 
   //otherwise display all cronies
   } else {
