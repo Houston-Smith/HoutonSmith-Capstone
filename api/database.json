@@ -57,18 +57,85 @@
       "crewId": 1,
       "name": "Droop",
       "species": "Goblin",
-      "skills": "Stealth, Sleight of Hand",
-      "pay": "1",
+      "skill1": "Sneaky",
+      "skill2": "Lock Picking",
+      "additionalSkills": "",
+      "pay": "4",
+      "id": 1
+    }
+  ],
+  "skills": [
+    {
+      "name": "Acrobat",
       "id": 1
     },
     {
-      "managerId": 1,
-      "crewId": 1,
-      "name": "Taz",
-      "species": "Kobold",
-      "skills": "Being awesome, crossbows",
-      "pay": "100",
+      "name": "Animal Whisperer",
       "id": 2
+    },
+    {
+      "name": "Arcana Expert",
+      "id": 3
+    },
+    {
+      "name": "Athletic",
+      "id": 4
+    },
+    {
+      "name": "Deceptive",
+      "id": 5
+    },
+    {
+      "name": "History Buff",
+      "id": 6
+    },
+    {
+      "name": "People Reader",
+      "id": 7
+    },
+    {
+      "name": "Intimidating",
+      "id": 8
+    },
+    {
+      "name": "Investigator",
+      "id": 9
+    },
+    {
+      "name": "Lock Picking",
+      "id": 10
+    },
+    {
+      "name": "Medical Training",
+      "id": 11
+    },
+    {
+      "name": "Perceptive",
+      "id": 12
+    },
+    {
+      "name": "Performance",
+      "id": 13
+    },
+    {
+      "name": "Silver Tongue",
+      "id": 14
+    },
+    {
+      "name": "Religious Background",
+      "id": 15
+    },
+    {
+      "name": "Quick Fingers",
+      "id": 16
+    },
+    {
+      "name": "Sneaky",
+      "id": 17
+    },
+    {
+      "name": "Tracking",
+      "id": 18
     }
   ]
 }

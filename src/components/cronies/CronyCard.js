@@ -36,7 +36,10 @@ useEffect(() => {
       <div className="card-content">
         <h2>{crony.name}</h2>
         <p>{crony.species}</p>
-        <p><b>Skills</b>: {crony.skills}</p>
+        <p><b>Skill Sets</b>:</p>
+        <p>{crony.skill1}, {crony.skill2}</p>
+        <p><b>Additional Skills</b>:</p>
+        <p>{crony.additionalSkills}</p>
         <p><b>Pay</b>: {crony.pay} gold</p>
         <p><b>Assigned</b>: {crew.name}</p>
         <button type="button" className="btn btn-primary" onClick={() => callDeleteCrony(crony.id)}>Fire Crony</button>
