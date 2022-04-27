@@ -22,8 +22,15 @@ export const getCrewsOfActiveUser = (userId) => {
     .then(response => response.json())
 }
 
+//-----------------------------------------RETRIEVES A LIST OF CREWS FROM THE API BY HIDEOUT ID-----------------------------------------//
 
-//------------------------------------------------RETRIEVES A CREW BY THEIR ID----------------------------------------------------------//
+export const getCrewByHideout = (hideoutId) => {
+  return fetch (`${URL}/crews?hideoutId=${hideoutId}`)
+    .then(response => response.json())
+}
+
+
+//-----------------------------------RETRIEVES A CREW EXPANDED WITH HIDEOUT BY THEIR ID-------------------------------------------------//
 
 export const getCrewWithHideoutById = (crewId) => {
   return fetch(`${URL}/crews/${crewId}/?_expand=hideout`)
