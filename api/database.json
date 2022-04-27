@@ -44,6 +44,13 @@
   ],
   "crews": [
     {
+      "managerId": 0,
+      "name": "0",
+      "hideoutId": "0",
+      "description": "0",
+      "id": 0
+    },
+    {
       "managerId": 1,
       "name": "Dummier Crew",
       "hideoutId": "1",
@@ -54,7 +61,7 @@
   "cronies": [
     {
       "managerId": 1,
-      "crewId": 1,
+      "crewId": "0",
       "name": "Droop",
       "species": "Goblin",
       "skill1": "Animal Whisperer",
@@ -62,6 +69,28 @@
       "additionalSkills": "",
       "pay": "4",
       "id": 1
+    },
+    {
+      "managerId": 1,
+      "crewId": "0",
+      "name": "Steve",
+      "species": "Kenku",
+      "skill1": "Animal Whisperer",
+      "skill2": "History Buff",
+      "additionalSkills": "",
+      "pay": "5",
+      "id": 2
+    },
+    {
+      "managerId": 1,
+      "crewId": "0",
+      "name": "Sunflower Grey",
+      "species": "Kenku",
+      "skill1": "Animal Whisperer",
+      "skill2": "Athletic",
+      "additionalSkills": "",
+      "pay": 0,
+      "id": 3
     }
   ],
   "skills": [

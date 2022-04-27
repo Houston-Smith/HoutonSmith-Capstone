@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-export const DetailsCronyCard = ({crony}) => {
+export const DetailsCronyCard = ({crony, callFireCrony}) => {
+
 
 
 
@@ -32,6 +33,7 @@ export const DetailsCronyCard = ({crony}) => {
               : <p><b>Additional Skills</b>: {crony.additionalSkills}</p>
             } 
         <p><b>Pay</b>: {crony.pay} gold</p>
+        <button type="button" className="btn btn-primary" onClick={() => callFireCrony(crony)}>Fire Crony</button>
       </div>
     </div>
   )

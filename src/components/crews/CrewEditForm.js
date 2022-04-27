@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import { getCrewById, updateCrew } from "../../modules/CrewManager";
+import { getCrewWithHideoutById, updateCrew } from "../../modules/CrewManager";
 import { getHideoutsOfActiveUser } from "../../modules/HideoutManager";
 import "./CrewForm.css";
 
@@ -70,7 +70,7 @@ getHideouts()
   }
 
   useEffect(() => {
-    getCrewById(crewId)
+    getCrewWithHideoutById(crewId)
       .then(crew => {
         setCrew(crew);
         setIsLoading(false);

@@ -63,6 +63,8 @@ const callDeleteCrony = (id) => {
   .then(() => getCronies())
 };
 
+
+
 const filterCronies = (event) => {
 
   // save the input as a variable
@@ -74,7 +76,7 @@ const filterCronies = (event) => {
 
   //if selected value is not an empy string: Filter by the crew Id
   if (selectedVal != "") {
-  getCroniesByCrew(selectedVal)
+  getCroniesOfActiveUser(selectedVal)
     .then(cronies => setCronies(cronies))
 
   //otherwise display all cronies
