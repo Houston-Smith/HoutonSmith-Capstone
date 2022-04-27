@@ -60,11 +60,6 @@ const getSkills = () => {
 	})
 }
 
-const filterSkills = (skills, skill1, skill2, selection) => {
-	const filtered = skills.filter(skill => skill.name != skill1 && skill.name != skill2 && skill.name !=selection)
-	return (filtered)
-}
-
 //------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
 
 useEffect(() => {
@@ -86,17 +81,7 @@ useEffect(() => {
 		if (event.target.id.includes("Id")) {
 			selectedVal = parseInt(selectedVal)
 		}
-		if (event.target.id.includes("skill")) {
-			let skill1 = crony.skill1
-			let skill2 = crony.skill2
-			let selection = event.target.value
 
-			return getAllSkills().then(skills => {
-				//...then populate empty crews array with what comes back.
-				setSkills(skills)
-			})
-
-		}
 		//Change the property of the input field to a new value
 		newCrony[event.target.id] = selectedVal
 		// update state
@@ -112,7 +97,8 @@ useEffect(() => {
 		//Saves crony name, species, and skills in variables
 		const cronyName = crony.name
     const cronySpecies = crony.species
-		const cronySkills = crony.skills
+		const cronySkill1 = crony.skill1
+		const cronySkill2 = crony.skill2
 		const cronyPay = crony.pay
 		const crewId = crony.crewId
 		let newCrony = { ...crony }
@@ -125,6 +111,15 @@ useEffect(() => {
 			//Display error message if species input field is left empty
 		} else if (cronySpecies === "") {
 			window.alert("Please input a description for your Crony")
+
+		}	else if (cronySkill1 === cronySkill2) {
+				window.alert("Can't select the same skill twice")
+		
+		}	else if (cronySkill1 === crony.additionalSkills) {
+				window.alert("Can't select the same skill twice")
+		
+		}	else if (cronySkill2 === crony.additionalSkills) {
+				window.alert("Can't select the same skill twice")		
 
 		} else if (cronyPay === 0 && cronyPay < 0) {
 			window.alert("You need to pay your cronies, cheapskate")
