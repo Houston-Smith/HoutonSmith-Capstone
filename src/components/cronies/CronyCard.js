@@ -19,7 +19,6 @@ export const CronyCard = ({crony, callDeleteCrony}) => {
     //Pull Crews array for the active user from API...
     return getCrewById(crony.crewId).then(crew => {
       //...then populate empty crews array with what comes back.
-      console.log(crew)
       setCrew(crew)
     })
   }

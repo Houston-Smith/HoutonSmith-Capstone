@@ -70,6 +70,13 @@
       "hideoutId": 1,
       "description": "The yard needs to be mowed. Get to it ya slouch. ",
       "id": 3
+    },
+    {
+      "managerId": 2,
+      "name": "Sunflower Grey",
+      "hideoutId": 2,
+      "description": "Dummier Description",
+      "id": 4
     }
   ],
   "cronies": [
