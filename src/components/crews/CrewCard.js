@@ -14,7 +14,6 @@ export const CrewCard = ({crew, callDeleteCrew}) => {
   useEffect(() => {
     getCroniesByCrew(crew.id)
       .then(cronyList => {
-        console.log(cronyList)
         setCronies(cronyList);
       });
   }, []);
@@ -39,6 +38,7 @@ export const CrewCard = ({crew, callDeleteCrew}) => {
 						))}  
         <button type="button" className="btn btn-primary" onClick={() => callDeleteCrew(crew.id)}>Disband</button>
         <button type="button" className="btn btn-primary" onClick={() => {navigate(`/crews/${crew.id}/edit`)}}>Edit</button>
+        <button type="button" className="btn btn-primary" onClick={() => {navigate(`/crews/${crew.id}/details`)}}>Details</button>
       </div>
     </div>
   )

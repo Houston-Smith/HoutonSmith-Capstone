@@ -26,7 +26,7 @@ export const getCrewsOfActiveUser = (userId) => {
 //------------------------------------------------RETRIEVES A CREW BY THEIR ID----------------------------------------------------------//
 
 export const getCrewById = (crewId) => {
-  return fetch(`${URL}/crews/${crewId}`)
+  return fetch(`${URL}/crews/${crewId}/?_expand=hideout`)
   .then(res => res.json())
 }
 

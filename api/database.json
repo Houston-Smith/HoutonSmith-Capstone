@@ -21,12 +21,22 @@
       "id": 4
     }
   ],
-  "heists": [],
+  "heists": [
+    {
+      "managerId": 1,
+      "name": "Heist 1",
+      "description": "Just a Test",
+      "location": "My Place",
+      "date": "2022-04-28",
+      "crewId": 1,
+      "id": 1
+    }
+  ],
   "hideouts": [
     {
       "id": 1,
       "managerId": 1,
-      "name": "Dummier Name",
+      "name": "Dummy Name",
       "description": "Dummier Description",
       "location": "Dummier Location",
       "isOcupied": false
