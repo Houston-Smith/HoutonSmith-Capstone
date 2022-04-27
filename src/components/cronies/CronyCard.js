@@ -58,7 +58,10 @@ useEffect(() => {
               : <p><b>Additional Skills</b>: {crony.additionalSkills}</p>
             } 
         <p><b>Pay</b>: {crony.pay} gold</p>
-        <p><b>Assigned</b>: {crew.name}</p>
+        {crony.crewId === "0"
+              ? <p><b>Currently Unnasigned</b></p>
+              : <p><b>Assigned</b>: {crew.name}</p>
+            } 
         <button type="button" className="btn btn-primary" onClick={() => callDeleteCrony(crony.id)}>Fire Crony</button>
         <button type="button" className="btn btn-primary" onClick={() => {navigate(`/cronies/${crony.id}/edit`)}}>Edit</button>
       </div>

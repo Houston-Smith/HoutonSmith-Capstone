@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./CrewForm";
-import { getCroniesByCrew } from "../../modules/CronyManager";
-import { getCrewById } from "../../modules/CrewManager";
+import { getCroniesByCrew, updateCrony } from "../../modules/CronyManager";
+import { getCrewWithHideoutById } from "../../modules/CrewManager";
 import { getHideoutById } from "../../modules/HideoutManager";
 import { getHeistsByCrew } from "../../modules/HeistManager";
 import { DetailsCronyCard } from "./DetailsCronyCard";
@@ -35,7 +35,7 @@ export const CrewDetails = () => {
   const [crew, setCrew] = useState({ name: "", });
   const [heists, setHeists] = useState([])
 
-  
+
 //-----------------------------------POPULATE EMPTY ARRAYS WITH OBJECTS FROM THE API------------------------------------------------------//
 
   const getCronies = () => {
@@ -48,7 +48,7 @@ export const CrewDetails = () => {
 
   const getCrew = () => {
     //Pull Cronies array for the active user from API...
-    return getCrewById(crewId).then(crew => {
+    return getCrewWithHideoutById(crewId).then(crew => {
       //...then populate empty cronies array with what comes back.
       setCrew(crew)
     })
@@ -78,6 +78,25 @@ useEffect(() => {
 }, [])
 
 
+
+const callFireCrony = (crony) => {
+
+  const editedCrony = {
+    id: crony.id,
+    managerId: crony.managerId,
+    crewId: "0",
+    name: crony.name,
+    species: crony.species,
+    skill1: crony.skill1,
+    skill2: crony.skill2,
+    additionalSkills: crony.additionalSkills,
+    pay: crony.pay
+  };
+
+updateCrony(editedCrony)
+  .then(() => getCronies()
+  )
+}
  //--------------------------------GENERATE HTML FOR HIDEOUTS PAGE AND GENERATE HIDEOUT CARDS------------------------------------------------// 
 
   return (
@@ -93,7 +112,7 @@ useEffect(() => {
       </section>
       <section className="card-container">
         {cronies.map(crony =>
-          <DetailsCronyCard key={crony.id} crony={crony}/>
+          <DetailsCronyCard key={crony.id} crony={crony} callFireCrony={callFireCrony}/>
         )}
       </section>
       <h2>Assigned Heists:</h2>
