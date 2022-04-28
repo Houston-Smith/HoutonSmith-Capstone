@@ -68,7 +68,10 @@
       "name": "Test 2",
       "description": "Funny Description Here",
       "location": "Pleasant View, TN",
+      "isOcupied": true,
       "id": 3
+    },
+    {  
       "userId": 2,
       "name": "Test Hideout",
       "description": "It's my House",
@@ -118,7 +121,9 @@
       "userId": 5,
       "name": "Test Crew",
       "hideoutId": 3,
-      "description": "Dummier Description",
+      "description": "Dummier Description"
+    },
+    {  
       "userId": 2,
       "name": "Test 3",
       "hideoutId": "4",
