@@ -16,12 +16,13 @@ export const CronyForm = () => {
 	let userObj = JSON.parse(sessionStorage.getItem("nutshell_user"))
 	let currentUser = userObj.id;
 
+
 	//----------------------------------------DEFINE navigate AS useNavigate FOR FUTURE USE--------------------------------------------------//
 
 	const navigate = useNavigate()
 
 
-	//----------------------------------SET HIDEOUTS AND CURRENT CURRENT HIDEOUT ARRAYS WITH EMPTY KEYS---------------------------------------//
+	//--------------------------------------------------SET CRONY ARRAY WITH EMPTY KEYS-----------------------------------------------------//
 
 	const [crony, setCrony] = useState({
 		userId: currentUser,
@@ -35,14 +36,14 @@ export const CronyForm = () => {
 	})
 
 
-//---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
+//-----------------------------------------SET EMPTY CREWS AND SKILLS ARRAYS-------------------------------------------------------------//
 
   const [crews, setCrews] = useState([])
 	const [skills, setSkills] = useState([])
 
 
 
-//-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+//-----------------------------------POPULATE EMPTY CREWS AND SKILLS ARRAYS WITH OBJECTS FROM THE API------------------------------------//
 
 const getCrews = () => {
 	//Pull Crews array for the active user from API...
@@ -60,7 +61,7 @@ const getSkills = () => {
 	})
 }
 
-//------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
+//------------------------------------RUN getCrews AND getSkills FUNCTIONS AFTER FIRST RENDER---------------------------------------------------//
 
 useEffect(() => {
 getCrews()
@@ -70,10 +71,11 @@ useEffect(() => {
 	getSkills()
 	}, [])
 
-	//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
+
+//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
 
 	const handleControlledInputChange = (event) => {
-		//Create a copy of the friend array
+		//Create a copy of the crony array
 		const newCrony = { ...crony }
 		//target the value of the input field
 		let selectedVal = event.target.value
@@ -81,7 +83,6 @@ useEffect(() => {
 		if (event.target.id.includes("Id")) {
 			selectedVal = parseInt(selectedVal)
 		}
-
 		//Change the property of the input field to a new value
 		newCrony[event.target.id] = selectedVal
 		// update state
@@ -89,7 +90,7 @@ useEffect(() => {
 	}
 
 
-	//---------------------------------CALL addFriend FUNCTION AND NAVIGATE BACK TO HIDEOUT PAGE ON BUTTON CLICK----------------------------//
+	//---------------------------------CALL addCrony FUNCTION AND NAVIGATE BACK TO CRONY PAGE ON BUTTON CLICK----------------------------//
 
 	const ClickAddCrony = (event) => {
 		//Prevents the browser from submitting the form
@@ -130,14 +131,14 @@ useEffect(() => {
 	}
 
 
-	//----------------------------------------CANCELS FORM AND NAVIGATES BACK TO HIDEOUT PAGE------------------------------------------------//
+	//----------------------------------------CANCELS FORM AND NAVIGATES BACK TO CRONY PAGE------------------------------------------------//
 
 	const ClickCancel = (event) => {
 		navigate("/cronies")
 	}
 
 
-	//----------------------------------------------GENERATE HTML FOR NEW HIDEOUT FORM-------------------------------------------------------//
+	//----------------------------------------------GENERATE HTML FOR CRONY FORM-------------------------------------------------------//
 
 	return (
 		<form className="friendForm">

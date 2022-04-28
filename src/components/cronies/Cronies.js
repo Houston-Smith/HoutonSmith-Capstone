@@ -21,13 +21,13 @@ export const Cronies = () => {
   const navigate = useNavigate()
 
 
-//---------------------------------------------------SET EMPTY CRONIESAND CREWS ARRAYS----------------------------------------------------//
+//---------------------------------------------------SET EMPTY CRONIES AND CREWS ARRAYS----------------------------------------------------//
 
   const [cronies, setCronies] = useState([])
   const [crews, setCrews] = useState([])
   
 
-//-----------------------------------POPULATE EMPTY CRONIES ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+//-----------------------------POPULATE EMPTY CRONIES AND CREWS ARRAYS WITH OBJECTS FROM THE API----------------------------------------------//
 
   const getCronies = () => {
     //Pull Cronies array for the active user from API...
@@ -63,6 +63,9 @@ const callDeleteCrony = (id) => {
   .then(() => getCronies())
 };
 
+
+//--------------------------------------------FILTERS CRONIES BY THEIR crewId-------------------------------------------------------------//
+
 const cronyFilter = (crewId) => {
   
   return getCroniesOfActiveUser(currentUser)
@@ -71,10 +74,10 @@ const cronyFilter = (crewId) => {
   
 }
 
-const filterCronies = (event) => {
-  
-  
 
+//-------------------------------FILTERS CRONIES BY CREW ID UNLESS NONE IS PROVIDED-------------------------------------------------------------//
+
+const filterCronies = (event) => {
 
   // save the input as a variable
   let selectedVal = event.target.value
@@ -82,7 +85,6 @@ const filterCronies = (event) => {
   if (event.target.id.includes("Id")) {
     selectedVal = parseInt(selectedVal)
   }
-
   //if selected value is not an empy string: Filter by the crew Id
   if (selectedVal != "") {
   cronyFilter(selectedVal)

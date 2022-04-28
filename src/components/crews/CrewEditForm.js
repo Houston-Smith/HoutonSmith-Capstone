@@ -76,7 +76,7 @@ useEffect(() => {
   };
 
 
-//------------------------------------------RUN getHideouts FUNCTION AFTER FIRST RENDER---------------------------------------------------//
+//-------------UPDATES THE CREW WITH A DUPLICATE THAT HAS THE SAME PROPERTIES OTHER THAN ONES THAT WERE CHANGED---------------------------//
 
   const updateExistingCrew = evt => {
     evt.preventDefault()

@@ -7,13 +7,13 @@ export const CronyCard = ({crony, callDeleteCrony}) => {
 
   const navigate = useNavigate()
 
-  //---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
+  //---------------------------------------------------SET EMPTY CREW ARRAY-------------------------------------------------------------//
 
   const [crew, setCrew] = useState([])
 
   
 
-//-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+//-----------------------------------POPULATE EMPTY CREW ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
 
   const getCrew = () => {
     //Pull Crews array for the active user from API...
