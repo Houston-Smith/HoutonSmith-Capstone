@@ -18,12 +18,12 @@ export const HeistEditForm = () => {
   const {heistId} = useParams();
   const navigate = useNavigate();
 
-	//---------------------------------------------------SET EMPTY HIDEOUTS ARRAY-------------------------------------------------------------//
+	//---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
 
   const [crews, setCrews] = useState([])
 
 
-//-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+//-----------------------------POPULATE EMPTY CREWS AND HEISTS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
 
 const getCrews = () => {
 	//Pull Crews array for the active user from API...
@@ -33,6 +33,13 @@ const getCrews = () => {
 	})
 }
 
+useEffect(() => {
+	getHeistById(heistId)
+		.then(heist => {
+			setHeist(heist);
+			setIsLoading(false);
+		});
+}, []);
 
 //------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
 
@@ -41,20 +48,29 @@ useEffect(() => {
 }, [])
 
 
+//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
+
   const handleFieldChange = evt => {
+		//create a copy of the heist object
     const stateToChange = { ...heist };
+		// forms always provide values as strings. But we want to save the ids as numbers.
     if (evt.target.id.includes("Id")) {
 			evt.target.value = parseInt(evt.target.value)
 		}
+		//Change the property of the input field to a new value
     stateToChange[evt.target.id] = evt.target.value;
+		//Update state
     setHeist(stateToChange);
   };
+
+
+//-------------UPDATES THE CREW WITH A DUPLICATE THAT HAS THE SAME PROPERTIES OTHER THAN ONES THAT WERE CHANGED---------------------------//
 
   const updateExistingHeist = evt => {
     evt.preventDefault()
     setIsLoading(true);
 
-
+		//Create a new object identical to crew with updated properties 
     const editedHeist = {
       id: heistId,
 	    userId: heist.userId,
@@ -65,24 +81,23 @@ useEffect(() => {
 		  crewId: heist.crewId,
     };
 
-
+	//Invoke updateHeist passing editdCrony as an argument
+	//Navigate back to heists page
   updateHeist(editedHeist)
     .then(() => navigate("/heists")
     )
   }
 
-  useEffect(() => {
-    getHeistById(heistId)
-      .then(heist => {
-        setHeist(heist);
-        setIsLoading(false);
-      });
-  }, []);
+
+//----------------------------------------CANCELS FORM AND NAVIGATES BACK TO CRONY PAGE------------------------------------------------//
 
   const ClickCancel = (event) => {
     navigate("/heists")
   }
-  
+
+	
+//------------------------------------------GENERATES HTML FOR THE HEIST EDIT FORM------------------------------------------------------//
+
   return (
     <>
       <form className="taskForm">

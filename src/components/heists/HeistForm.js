@@ -33,7 +33,7 @@ export const HeistForm = () => {
 	})
 
 
-	//---------------------------------------------------SET EMPTY HIDEOUTS ARRAY-------------------------------------------------------------//
+	//---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
 
   const [crews, setCrews] = useState([])
 
@@ -59,7 +59,7 @@ useEffect(() => {
 	//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
 
 	const handleControlledInputChange = (event) => {
-		//Create a copy of the friend array
+		//Create a copy of the heist array
 		const newHeist = { ...heist }
 		//target the value of the input field
 		let selectedVal = event.target.value
@@ -74,7 +74,7 @@ useEffect(() => {
 	}
 
 
-	//---------------------------------CALL addCREW FUNCTION AND NAVIGATE BACK TO CREW PAGE ON BUTTON CLICK----------------------------//
+	//---------------------------------CALL addHeist FUNCTION AND NAVIGATE BACK TO CREW PAGE ON BUTTON CLICK----------------------------//
 
 	const ClickAddHeist = (event) => {
 		//Prevents the browser from submitting the form

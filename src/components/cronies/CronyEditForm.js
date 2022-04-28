@@ -75,7 +75,7 @@ useEffect(() => {
 //-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
 
 const handleFieldChange = evt => {
-	//create a copy of the crony array
+	//create a copy of the crony object
 	const stateToChange = { ...crony };
 	// forms always provide values as strings. But we want to save the ids as numbers.
 	if (evt.target.id.includes("Id")) {
@@ -125,7 +125,7 @@ const editedCrony = {
 		crony.crewId = 1	
 			
 	} else {
-		//Invoke addCrony passing editdCrony as an argument
+		//Invoke updateCrony passing editdCrony as an argument
 		//Navigate back to crews page
 		updateCrony(editedCrony)
 			.then(() => navigate("/cronies"))
