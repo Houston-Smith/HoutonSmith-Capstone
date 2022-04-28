@@ -71,7 +71,7 @@
       "isOcupied": true,
       "id": 3
     },
-    {  
+    {
       "userId": 2,
       "name": "Test Hideout",
       "description": "It's my House",
@@ -121,14 +121,15 @@
       "userId": 5,
       "name": "Test Crew",
       "hideoutId": 3,
-      "description": "Dummier Description"
+      "description": "Dummier Description",
+      "id": 5
     },
-    {  
+    {
       "userId": 2,
       "name": "Test 3",
       "hideoutId": "4",
       "description": "The yard needs to be mowed. Get to it ya slouch. ",
-      "id": 5
+      "id": 6
     }
   ],
   "cronies": [
@@ -167,7 +168,7 @@
     },
     {
       "userId": 2,
-      "crewId": "1",
+      "crewId": "4",
       "name": "Sunflower Grey",
       "species": "Kenku",
       "skill1": "Acrobat",
