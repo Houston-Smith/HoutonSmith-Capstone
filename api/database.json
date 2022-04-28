@@ -60,6 +60,7 @@
       "name": "Sunflower Grey",
       "description": "The yard needs to be mowed. Get to it ya slouch. ",
       "location": "Pleasant View, TN",
+      "isOcupied": true,
       "id": 2
     },
     {
@@ -68,6 +69,20 @@
       "description": "Funny Description Here",
       "location": "Pleasant View, TN",
       "id": 3
+      "userId": 2,
+      "name": "Test Hideout",
+      "description": "It's my House",
+      "location": "My House",
+      "isOcupied": false,
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "name": "Test Hideout 2 ",
+      "description": "Funny Description Here",
+      "location": "Pleasant View, TN",
+      "isOcupied": true,
+      "id": 4
     }
   ],
   "crews": [
@@ -104,6 +119,10 @@
       "name": "Test Crew",
       "hideoutId": 3,
       "description": "Dummier Description",
+      "userId": 2,
+      "name": "Test 3",
+      "hideoutId": "4",
+      "description": "The yard needs to be mowed. Get to it ya slouch. ",
       "id": 5
     }
   ],
