@@ -8,6 +8,7 @@ import { CrewForm } from "./crews/CrewForm"
 import { CrewEditForm } from "./crews/CrewEditForm"
 import { CrewDetails } from "./crews/CrewDetails"
 import { CronyQuickAdd } from "./crews/CronyQuickAdd"
+import { CronyEditFormCrews } from "./crews/CronyEditFormCrew"
 import { Hideouts } from "./hideouts/Hideouts"
 import { HideoutForm } from "./hideouts/HideoutForm"
 import { HideoutEditForm } from "./hideouts/HideoutEditForm"
@@ -38,7 +39,8 @@ export const ApplicationViews = ({setAuthUser, isAuthenticated, setIsAuthenticat
       <Route path="/crews/add" element={<CrewForm/>}/>
       <Route path="/crews/:crewId/edit" element={<CrewEditForm/>}/>
       <Route path="/crews/:crewId/details" element={<CrewDetails/>}/>
-      <Route path="/crews/:crewId/addcronies" element={<CronyQuickAdd/>}/>
+      <Route path="/crews/:crewId/addCronies" element={<CronyQuickAdd/>}/>
+      <Route path="/cronies/:cronyId/crewEdit" element={<CronyEditFormCrews/>}/>
 
       <Route path="/hideouts" element={<Hideouts/>}/>
       <Route path="/hideouts/add" element={<HideoutForm/>}/>
