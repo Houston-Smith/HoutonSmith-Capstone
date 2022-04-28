@@ -26,6 +26,7 @@ export const HideoutForm = () => {
 		name: "",
 		description: "",
 		location: "",
+		isOcupied: false,
 	})
 
 	const [currentHideouts, setCurrentHideouts] = useState({})
