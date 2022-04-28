@@ -6,11 +6,21 @@ import { getAllSkills } from "../../modules/SkillManager";
 import "./CronyForm.css";
 
 export const CronyEditForm = () => {
-  const [crony, setCrony] = useState({ name: "", species: "", skills: "", pay: 0 });
+
+//-----------------------------------------------SET ISLOADING----------------------------------------------------------------------------//	
+
   const [isLoading, setIsLoading] = useState(false);
 
+
+//-------------------------------------SAVE cronyID AS A VARIABLE USING useParams---------------------------------------------------------//
+		
   const {cronyId} = useParams();
+
+
+//----------------------------------------DEFINE navigate AS useNavigate FOR FUTURE USE--------------------------------------------------//
+
   const navigate = useNavigate();
+
 
 //-------------------------------------SAVE THE CURRENT USER'S ID AND OBJECT AS VARIABLES------------------------------------------------//	
 
@@ -18,10 +28,11 @@ export const CronyEditForm = () => {
 	let currentUser = userObj.id;
 
 
-//---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
+//-----------------------------------------SET EMPTY CREWS, SKILLS, AND CRONY ARRAYS-----------------------------------------------------//
 
   const [crews, setCrews] = useState([])
   const [skills, setSkills] = useState([])
+	const [crony, setCrony] = useState({ name: "", species: "", skills: "", pay: 0 });
 
 
 //-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
@@ -35,14 +46,15 @@ const getCrews = () => {
 }
 
 const getSkills = () => {
-	//Pull Crews array for the active user from API...
+	//Pull Skills array for the active user from API...
 	return getAllSkills().then(skills => {
-		//...then populate empty crews array with what comes back.
+		//...then populate empty skills array with what comes back.
 		setSkills(skills)
 	})
 }
 
-//------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
+
+//----------------------------------RUN getCrews and getSkills getCronyById FUNCTIONs AFTER FIRST RENDER--------------------------------------//
 
 useEffect(() => {
 getCrews()
@@ -52,71 +64,85 @@ useEffect(() => {
   getSkills()
     }, [])
 
-
-  const handleFieldChange = evt => {
-    const stateToChange = { ...crony };
-    if (evt.target.id.includes("Id")) {
-			evt.target.value = parseInt(evt.target.value)
-		}
-    stateToChange[evt.target.id] = evt.target.value;
-    setCrony(stateToChange);
-  };
-
-  const updateExistingCrony = evt => {
-    evt.preventDefault()
-    setIsLoading(true);
-
-
-    const editedCrony = {
-      id: cronyId,
-	    userId: crony.userId,
-      crewId: crony.crewId,
-      name: crony.name,
-      species: crony.species,
-      skill1: crony.skill1,
-      skill2: crony.skill2,
-      additionalSkills: crony.additionalSkills,
-      pay: crony.pay
-    };
-
-			//Display error message if name input field is left empty
-			if (editedCrony.name === "") {
-				window.alert("Please input a name for your Crony")
-	
-				//Display error message if species input field is left empty
-			} else if (editedCrony.species === "") {
-				window.alert("Please input a description for your Crony")
-	
-			}	else if (editedCrony.skill1 === editedCrony.skill2 && editedCrony.skill1 != "" && editedCrony.skill2 != "") {
-					window.alert("Can't select the same skill twice")
+useEffect(() => {
+	getCronyById(cronyId)
+		.then(crony => {
+			setCrony(crony);
+			setIsLoading(false);
+		});
+}, []);
 		
-			} else if (editedCrony.pay === 0) {
-				window.alert("You need to pay your cronies, cheapskate")
+
+//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
+
+const handleFieldChange = evt => {
+	//create a copy of the crony object
+	const stateToChange = { ...crony };
+	// forms always provide values as strings. But we want to save the ids as numbers.
+	if (evt.target.id.includes("Id")) {
+		evt.target.value = parseInt(evt.target.value)
+	}
+	//Change the property of the input field to a new value
+	stateToChange[evt.target.id] = evt.target.value;
+	//Update state
+	setCrony(stateToChange);
+};
+
+
+//-------------UPDATES THE CREW WITH A DUPLICATE THAT HAS THE SAME PROPERTIES OTHER THAN ONES THAT WERE CHANGED---------------------------//
+
+const updateExistingCrony = evt => {
+	evt.preventDefault()
+	setIsLoading(true);
+
+//Create a new object identical to crew with updated properties 
+const editedCrony = {
+	id: cronyId,
+	userId: crony.userId,
+	crewId: crony.crewId,
+	name: crony.name,
+	species: crony.species,
+	skill1: crony.skill1,
+	skill2: crony.skill2,
+	additionalSkills: crony.additionalSkills,
+	pay: crony.pay
+};
+
+	//Display error message if name input field is left empty
+	if (editedCrony.name === "") {
+		window.alert("Please input a name for your Crony")
+
+		//Display error message if species input field is left empty
+	} else if (editedCrony.species === "") {
+		window.alert("Please input a description for your Crony")
+
+	}	else if (editedCrony.skill1 === editedCrony.skill2 && editedCrony.skill1 != "" && editedCrony.skill2 != "") {
+			window.alert("Can't select the same skill twice")
+
+	} else if (editedCrony.pay === 0) {
+		window.alert("You need to pay your cronies, cheapskate")
+	
+	} else if (editedCrony.crewId === "") {
+		crony.crewId = 1	
 			
-			} else if (editedCrony.crewId === "") {
-				crony.crewId = 1	
-					
-			} else {
-				//Invoke addCrony passing hideout as an argument
-				//Navigate back to crews page
-				updateCrony(editedCrony)
-					.then(() => navigate("/cronies"))
-			} 
-		}
+	} else {
+		//Invoke updateCrony passing editdCrony as an argument
+		//Navigate back to crews page
+		updateCrony(editedCrony)
+			.then(() => navigate("/cronies"))
+	} 
+}
 
 
-  useEffect(() => {
-    getCronyById(cronyId)
-      .then(crony => {
-        setCrony(crony);
-        setIsLoading(false);
-      });
-  }, []);
+//-----------------------------------------------SENDS USER BACK TO CREWS PAGE----------------------------------------------------------------//
 
-  const ClickCancel = (event) => {
-    navigate("/cronies")
-  }
-  
+const ClickCancel = (event) => {
+	navigate("/cronies")
+}
+
+
+//---------------------------------------------GENERATES HTML FOR CRONY EDIT FORM----------------------------------------------------------------//
+
   return (
     <>
       <form className="taskForm">

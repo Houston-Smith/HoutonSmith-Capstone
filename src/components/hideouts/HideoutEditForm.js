@@ -4,17 +4,46 @@ import { getHideoutById, updateHideout } from "../../modules/HideoutManager";
 import "./HideoutForm.css";
 
 export const HideoutEditForm = () => {
-  const [hideout, setHideout] = useState({ name: "", location: "", description: "" });
+  
+//-----------------------------------------------SET ISLOADING----------------------------------------------------------------------------//	
+
   const [isLoading, setIsLoading] = useState(false);
 
+//-------------------------------------SAVE hideoutID AS A VARIABLE USING useParams---------------------------------------------------------//
+
   const {hideoutId} = useParams();
+
+
+//----------------------------------------DEFINE navigate AS useNavigate FOR FUTURE USE--------------------------------------------------//
+
   const navigate = useNavigate();
+
+
+//---------------------------------------------------SET EMPTY HIDEOUT ARRAY-------------------------------------------------------------//
+
+  const [hideout, setHideout] = useState({ name: "", location: "", description: "" });
+
+
+//-------------------------------------POPULATE EMPTY HIDEOUTARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+
+  useEffect(() => {
+    getHideoutById(hideoutId)
+      .then(hideout => {
+        setHideout(hideout);
+        setIsLoading(false);
+      });
+  }, []);
+
+//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
 
   const handleFieldChange = evt => {
     const stateToChange = { ...hideout };
     stateToChange[evt.target.id] = evt.target.value;
     setHideout(stateToChange);
   };
+
+
+//-------------UPDATES THE HIDEOUT WITH A DUPLICATE THAT HAS THE SAME PROPERTIES OTHER THAN ONES THAT WERE CHANGED---------------------------//
 
   const updateExistingHideout = evt => {
     evt.preventDefault()
@@ -35,18 +64,16 @@ export const HideoutEditForm = () => {
     )
   }
 
-  useEffect(() => {
-    getHideoutById(hideoutId)
-      .then(hideout => {
-        setHideout(hideout);
-        setIsLoading(false);
-      });
-  }, []);
+
+//----------------------------------------CANCELS FORM AND NAVIGATES BACK TO CRONY PAGE------------------------------------------------//
 
   const ClickCancel = (event) => {
     navigate("/hideouts")
   }
+
   
+//------------------------------------------GENERATES HTML FOR THE HEIST EDIT FORM------------------------------------------------------//
+
   return (
     <>
       <form className="taskForm">

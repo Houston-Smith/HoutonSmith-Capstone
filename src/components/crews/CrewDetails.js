@@ -19,7 +19,7 @@ export const CrewDetails = () => {
   let currentUser = userObj.id;
 
 
-//----------------------------------------OBTAINS THE CURRENT CREW ID BY USING USE PARAMS-------------------------------------------------//
+//----------------------------------------OBTAINS THE CURRENT CREW ID WITH USE PARAMS-------------------------------------------------//
 
   const {crewId} = useParams();
 
@@ -29,7 +29,8 @@ export const CrewDetails = () => {
 
   const navigate = useNavigate()
 
-//-------------------------------------SET EMPTY CRONIES, CREW, HEISTS, AND HIDEOUTS ARRAYS-----------------------------------------------//
+
+//-------------------------------------SET EMPTY CRONIES, CREW, AND HEISTS ARRAYS---------------------------------------------------------//
 
   const [cronies, setCronies] = useState([])
   const [crew, setCrew] = useState({ name: "", });
@@ -47,17 +48,17 @@ export const CrewDetails = () => {
   }
 
   const getCrew = () => {
-    //Pull Cronies array for the active user from API...
+    //Pull Crew array for the active user from API...
     return getCrewWithHideoutById(crewId).then(crew => {
-      //...then populate empty cronies array with what comes back.
+      //...then populate empty crew array with what comes back.
       setCrew(crew)
     })
   }
 
   const getHeists = () => {
-    //Pull Cronies array for the active user from API...
+    //Pull Heists array for the active user from API...
     return getHeistsByCrew(crewId).then(heists => {
-      //...then populate empty cronies array with what comes back.
+      //...then populate empty heists array with what comes back.
       setHeists(heists)
     })
   }
@@ -78,13 +79,14 @@ useEffect(() => {
 }, [])
 
 
+//--------------CHANGES A CRONIES crewID TO 1 TO REMOVE THEM FROM THE CREW AND CHANGE THEM TO CREWLESS-----------------------------------------------//
 
 const callFireCrony = (crony) => {
 
   const editedCrony = {
     id: crony.id,
     userId: crony.userId,
-    crewId: "0",
+    crewId: "1",
     name: crony.name,
     species: crony.species,
     skill1: crony.skill1,
@@ -97,6 +99,8 @@ updateCrony(editedCrony)
   .then(() => getCronies()
   )
 }
+
+
  //--------------------------------GENERATE HTML FOR HIDEOUTS PAGE AND GENERATE HIDEOUT CARDS------------------------------------------------// 
 
   return (

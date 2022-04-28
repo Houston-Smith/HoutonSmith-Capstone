@@ -6,55 +6,83 @@ import "./CrewForm.css";
 
 export const CrewEditForm = () => {
 
-	//-------------------------------------SAVE THE CURRENT USER'S ID AND OBJECT AS VARIABLES------------------------------------------------//	
+//-------------------------------------SAVE THE CURRENT USER'S ID AND OBJECT AS VARIABLES------------------------------------------------//	
 
 	let userObj = JSON.parse(sessionStorage.getItem("nutshell_user"))
 	let currentUser = userObj.id;
 
 
+//-------------------------------------CREATE AN EMPTY CREWS AND HIDEOUTS ARRAYS TO BE POPULATED LATER-----------------------------------//	
+
+
   const [crew, setCrew] = useState({ name: "", description: "" });
+  const [hideouts, setHideouts] = useState([])
   const [isLoading, setIsLoading] = useState(false);
 
+
+//--------------------------------------------SAVE crewID AS A VARIABLE USING useParams--------------------------------------------------//	
+
+
   const {crewId} = useParams();
+
+
+//--------------------------------------------SAVE navigate AS useNavigate FOR FUTURE USE------------------------------------------------//	
+
   const navigate = useNavigate();
 
-//---------------------------------------------------SET EMPTY HIDEOUTS ARRAY-------------------------------------------------------------//
 
-  const [hideouts, setHideouts] = useState([])
-
-
-//-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+//-----------------------------------POPULATE EMPTY HIDEOUTS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
 
 const getHideouts = () => {
-	//Pull Crews array for the active user from API...
+	//Pull Hideouts array for the active user from API...
 	return getHideoutsOfActiveUser(currentUser).then(hideouts => {
-		//...then populate empty crews array with what comes back.
+		//...then populate empty hideouts array with what comes back.
 		setHideouts(hideouts)
 	})
 }
 
 
-//------------------------------------------RUN getCrews FUNCTION AFTER FIRST RENDER---------------------------------------------------//
+//------------------------------------------RUN getHideouts FUNCTION AFTER FIRST RENDER---------------------------------------------------//
 
 useEffect(() => {
 getHideouts()
 }, [])
 
 
+//-----------POPULATES EMPTY CREW ARRAY WITH CREWS THAT POSESS A HIDEOUT ID MATCHING THIS HIDEOUTS ID-----------------------------------------//
+
+useEffect(() => {
+  getCrewWithHideoutById(crewId)
+    .then(crew => {
+      setCrew(crew);
+      setIsLoading(false);
+    });
+}, []);
+
+
+//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
+
   const handleFieldChange = evt => {
+    //create a copy of the crew array
     const stateToChange = { ...crew };
+    // forms always provide values as strings. But we want to save the ids as numbers.
     if (evt.target.id.includes("Id")) {
 			evt.target.value = parseInt(evt.target.value)
 		}
+    //Change the property of the input field to a new value
     stateToChange[evt.target.id] = evt.target.value;
+    //Update state
     setCrew(stateToChange);
   };
+
+
+//-------------UPDATES THE CREW WITH A DUPLICATE THAT HAS THE SAME PROPERTIES OTHER THAN ONES THAT WERE CHANGED---------------------------//
 
   const updateExistingCrew = evt => {
     evt.preventDefault()
     setIsLoading(true);
 
-
+    //Create a new object identical to crew with updated properties  
     const editedCrew = {
       id: crewId,
 	    userId: crew.userId,
@@ -63,24 +91,22 @@ getHideouts()
       description: crew.description,
     };
 
-
+    //Changes the crew Object in the API and returns to the crews page
   updateCrew(editedCrew)
     .then(() => navigate("/crews")
     )
   }
 
-  useEffect(() => {
-    getCrewWithHideoutById(crewId)
-      .then(crew => {
-        setCrew(crew);
-        setIsLoading(false);
-      });
-  }, []);
+
+ //-----------------------------------------------SENDS USER BACK TO CREWS PAGE----------------------------------------------------------------//
 
   const ClickCancel = (event) => {
     navigate("/crews")
   }
   
+  //----------------------------------------------GENERATES HTML FOR THE CREW EDIT FORM--------------------------------------------------------//
+
+
   return (
     <>
       <form className="taskForm">

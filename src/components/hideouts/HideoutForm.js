@@ -49,7 +49,7 @@ export const HideoutForm = () => {
 	//-----------------------------------------RE-RENDER AND DISPLAY VALUES WHEN A FIELD CHANGES-----------------------------------------------//
 
 	const handleControlledInputChange = (event) => {
-		//Create a copy of the friend array
+		//Create a copy of the hideout array
 		const newHideout = { ...hideout }
 		//target the value of the input field
 		let selectedVal = event.target.value
@@ -60,7 +60,7 @@ export const HideoutForm = () => {
 	}
 
 
-	//---------------------------------CALL addFriend FUNCTION AND NAVIGATE BACK TO HIDEOUT PAGE ON BUTTON CLICK----------------------------//
+	//---------------------------------CALL addHideout FUNCTION AND NAVIGATE BACK TO HIDEOUT PAGE ON BUTTON CLICK----------------------------//
 
 	const ClickAddHideout = (event) => {
 		//Prevents the browser from submitting the form
