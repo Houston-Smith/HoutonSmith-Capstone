@@ -35,19 +35,21 @@ export const CrewEditForm = () => {
 
 //--------------------------------------------FILTERS CRONIES BY THEIR crewId-------------------------------------------------------------//
 
-const hideoutFilter = () => {
+const hideoutFilter = (id) => {
   
+  const currentId = parseInt(id)
+
   return getHideoutsOfActiveUser(currentUser)
     .then(hideout =>
-      hideout.filter(hideout => hideout.isOcupied === false ))
+      hideout.filter(hideout => hideout.id === currentId || hideout.isOcupied === false))
   
 }
   
 //-----------------------------------POPULATE EMPTY HIDEOUTS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
 
-const getHideouts = () => {
+const getHideouts = (currentHidoutId) => {
 	//Pull Hideouts array for the active user from API...
-	return hideoutFilter(currentUser).then(hideouts => {
+	return hideoutFilter(currentHidoutId).then(hideouts => {
 		//...then populate empty hideouts array with what comes back.
 		setHideouts(hideouts)
 	})
@@ -65,9 +67,9 @@ const getCurrentHideout = (Id) => {
 
 //------------------------------------------RUN getHideouts FUNCTION AFTER FIRST RENDER---------------------------------------------------//
 
-useEffect(() => {
-getHideouts()
-}, [])
+// useEffect(() => {
+//   getHideouts()
+// }, [])
 
 //-----------POPULATES EMPTY CREW ARRAY WITH CREWS THAT POSESS A HIDEOUT ID MATCHING THIS HIDEOUTS ID-----------------------------------------//
 
@@ -77,6 +79,7 @@ useEffect(() => {
       setCrew(crew);
       getCurrentHideout(crew.hideoutId)
       setIsLoading(false);
+      getHideouts(crew.hideoutId)
     });
 }, []);
 
@@ -111,8 +114,7 @@ useEffect(() => {
 
 const SetHideoutOccupied = (selectedHideout) => {	
 
-  console.log(selectedHideout)
-
+  
   const OccupiedHidout = {
     id: selectedHideout.id,
     userId: selectedHideout.userId,
@@ -128,8 +130,6 @@ updateHideout(OccupiedHidout)
 //-----------------------------------------SETS THE OLD HIDEOUT AS OPSN IN THE DATA-----------------------------------------------//
 
 const setHideoutOpen = (previousHideout) => {	
-
-  console.log(previousHideout)
 
   const previous = {
     id: previousHideout.id,
