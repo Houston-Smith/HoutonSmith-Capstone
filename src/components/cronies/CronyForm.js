@@ -24,8 +24,8 @@ export const CronyForm = () => {
 	//----------------------------------SET HIDEOUTS AND CURRENT CURRENT HIDEOUT ARRAYS WITH EMPTY KEYS---------------------------------------//
 
 	const [crony, setCrony] = useState({
-		managerId: currentUser,
-		crewId: "0",
+		userId: currentUser,
+		crewId: "1",
 		name: "",
 		species: "",
 		skill1: "",
@@ -112,20 +112,14 @@ useEffect(() => {
 		} else if (cronySpecies === "") {
 			window.alert("Please input a description for your Crony")
 
-		}	else if (cronySkill1 === cronySkill2) {
+		}	else if (cronySkill1 === cronySkill2 && cronySkill1 != "" && cronySkill2 != "") {
 				window.alert("Can't select the same skill twice")
-		
-		}	else if (cronySkill1 === crony.additionalSkills) {
-				window.alert("Can't select the same skill twice")
-		
-		}	else if (cronySkill2 === crony.additionalSkills) {
-				window.alert("Can't select the same skill twice")		
-
-		} else if (cronyPay === 0 && cronyPay < 0) {
+	
+		} else if (cronyPay === 0) {
 			window.alert("You need to pay your cronies, cheapskate")
 		
 		} else if (crewId === "") {
-			crewId.id = 0	
+			crewId.id = 1	
 				
 		} else {
 			//Invoke addCrony passing hideout as an argument
@@ -217,7 +211,7 @@ useEffect(() => {
 					<label htmlFor="crew">Assign to crew:</label>
 					<select value={crony.crewId} name="crewId" id="crewId" onChange={handleControlledInputChange} className="form-control" >
 						<option disabled hidden value="">Select a crew</option>
-						<option value="0">None</option>
+						<option value="1">None</option>
 						{crews.map(c => (
 						<option key={c.id} value={c.id}>
 								{c.name}

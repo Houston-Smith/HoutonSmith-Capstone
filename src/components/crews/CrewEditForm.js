@@ -57,7 +57,7 @@ getHideouts()
 
     const editedCrew = {
       id: crewId,
-	    managerId: crew.managerId,
+	    userId: crew.userId,
 	    hideoutId: crew.hideoutId,
       name: crew.name,
       description: crew.description,

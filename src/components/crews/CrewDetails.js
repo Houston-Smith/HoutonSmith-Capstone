@@ -83,7 +83,7 @@ const callFireCrony = (crony) => {
 
   const editedCrony = {
     id: crony.id,
-    managerId: crony.managerId,
+    userId: crony.userId,
     crewId: "0",
     name: crony.name,
     species: crony.species,

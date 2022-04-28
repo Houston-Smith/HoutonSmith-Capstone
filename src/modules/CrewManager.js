@@ -18,12 +18,19 @@ export const getAllCrews = () => {
 //-----------------------------------------RETRIEVES A LIST OF CREWS OF THE ACTIVE USER FROM THE API-----------------------------------//
 
 export const getCrewsOfActiveUser = (userId) => {
-  return fetch (`${URL}/crews?managerId=${userId}`)
+  return fetch (`${URL}/crews?userId=${userId}`)
+    .then(response => response.json())
+}
+
+//-----------------------------------------RETRIEVES A LIST OF CREWS FROM THE API BY HIDEOUT ID-----------------------------------------//
+
+export const getCrewByHideout = (hideoutId) => {
+  return fetch (`${URL}/crews?hideoutId=${hideoutId}`)
     .then(response => response.json())
 }
 
 
-//------------------------------------------------RETRIEVES A CREW BY THEIR ID----------------------------------------------------------//
+//-----------------------------------RETRIEVES A CREW EXPANDED WITH HIDEOUT BY THEIR ID-------------------------------------------------//
 
 export const getCrewWithHideoutById = (crewId) => {
   return fetch(`${URL}/crews/${crewId}/?_expand=hideout`)

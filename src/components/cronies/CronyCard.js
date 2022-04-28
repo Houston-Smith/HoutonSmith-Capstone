@@ -58,7 +58,7 @@ useEffect(() => {
               : <p><b>Additional Skills</b>: {crony.additionalSkills}</p>
             } 
         <p><b>Pay</b>: {crony.pay} gold</p>
-        {crony.crewId === "0"
+        {crony.crewId === "1"
               ? <p><b>Currently Unnasigned</b></p>
               : <p><b>Assigned</b>: {crew.name}</p>
             } 

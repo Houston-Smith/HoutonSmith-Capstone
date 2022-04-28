@@ -57,7 +57,7 @@ useEffect(() => {
 
     const editedHeist = {
       id: heistId,
-	    managerId: heist.managerId,
+	    userId: heist.userId,
 	    name: heist.name,
 		  description: heist.description,
 		  location: heist.location,

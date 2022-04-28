@@ -24,7 +24,7 @@ export const HeistForm = () => {
 	//---------------------------------------SET HEISTS ARRAY WITH EMPTY KEYS-----------------------====------------------//
 
 	const [heist, setHeist] = useState({
-		managerId: currentUser,
+		userId: currentUser,
 		name: "",
 		description: "",
 		location: "",

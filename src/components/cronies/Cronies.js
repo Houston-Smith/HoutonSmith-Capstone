@@ -106,7 +106,7 @@ const filterCronies = (event) => {
 					<label htmlFor="crew">Filter Cronies:</label>
 					<select name="crewFilter" id="crewFilter" onChange={filterCronies} className="form-control" >
             <option value="">All Cronies</option>
-            <option value="0">Crewless Cronies</option>
+            <option value="1">Crewless Cronies</option>
 						{crews.map(c => (
 						<option key={c.id} value={c.id}>
 								{c.name}
