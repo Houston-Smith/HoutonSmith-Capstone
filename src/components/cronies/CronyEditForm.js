@@ -79,11 +79,31 @@ useEffect(() => {
       pay: crony.pay
     };
 
+			//Display error message if name input field is left empty
+			if (editedCrony.name === "") {
+				window.alert("Please input a name for your Crony")
+	
+				//Display error message if species input field is left empty
+			} else if (editedCrony.species === "") {
+				window.alert("Please input a description for your Crony")
+	
+			}	else if (editedCrony.skill1 === editedCrony.skill2 && editedCrony.skill1 != "" && editedCrony.skill2 != "") {
+					window.alert("Can't select the same skill twice")
+		
+			} else if (editedCrony.pay === 0) {
+				window.alert("You need to pay your cronies, cheapskate")
+			
+			} else if (editedCrony.crewId === "") {
+				crony.crewId = 1	
+					
+			} else {
+				//Invoke addCrony passing hideout as an argument
+				//Navigate back to crews page
+				updateCrony(editedCrony)
+					.then(() => navigate("/cronies"))
+			} 
+		}
 
-  updateCrony(editedCrony)
-    .then(() => navigate("/cronies")
-    )
-  }
 
   useEffect(() => {
     getCronyById(cronyId)

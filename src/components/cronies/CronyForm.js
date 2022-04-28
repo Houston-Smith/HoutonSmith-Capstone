@@ -112,16 +112,10 @@ useEffect(() => {
 		} else if (cronySpecies === "") {
 			window.alert("Please input a description for your Crony")
 
-		}	else if (cronySkill1 === cronySkill2) {
+		}	else if (cronySkill1 === cronySkill2 && cronySkill1 != "" && cronySkill2 != "") {
 				window.alert("Can't select the same skill twice")
-		
-		}	else if (cronySkill1 === crony.additionalSkills) {
-				window.alert("Can't select the same skill twice")
-		
-		}	else if (cronySkill2 === crony.additionalSkills) {
-				window.alert("Can't select the same skill twice")		
-
-		} else if (cronyPay === 0 && cronyPay < 0) {
+	
+		} else if (cronyPay === 0) {
 			window.alert("You need to pay your cronies, cheapskate")
 		
 		} else if (crewId === "") {
