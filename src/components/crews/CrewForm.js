@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { addCrew, getCrewsOfActiveUser } from "../../modules/CrewManager";
-import { getHideoutsOfActiveUser } from "../../modules/HideoutManager";
+import { getHideoutsOfActiveUser, getHideoutById, updateHideout} from "../../modules/HideoutManager";
 import "./CrewForm.css";
 
 
@@ -31,9 +31,11 @@ export const CrewForm = () => {
 
 	const [currentCrew, setCurrentCrews] = useState({})
 
-	//---------------------------------------------------SET EMPTY HIDEOUTS ARRAY-------------------------------------------------------------//
+	//-------------------------------------SET EMPTY HIDEOUTS AND SELECTED HIDEOUT ARRAYS------------------------------------------------------//
 
   const [hideouts, setHideouts] = useState([])
+	const [selectedHideout, setSelectedHideout] = useState([])
+
 
 
 //-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
@@ -80,12 +82,34 @@ getHideouts()
 		if (event.target.id.includes("Id")) {
 			selectedVal = parseInt(selectedVal)
 		}
+		//if the hideout is changed, update the selectedHideout for boolean change later(SetHideoutOccupied)
+		if (event.target.id.includes("hideoutId")) {
+			selectedVal = parseInt(selectedVal)
+			getHideoutById(selectedVal)
+			.then((hideout) => setSelectedHideout(hideout))
+		}
 		//Change the property of the input field to a new value
 		newCrew[event.target.id] = selectedVal
 		// update state
 		setCrew(newCrew)
 	}
 
+//-----------------------------------------SETS THE HIDEOUT CHOSEN AS OCCUPIED IN THE DATA-----------------------------------------------//
+
+	const SetHideoutOccupied = (selectedHideout) => {	
+
+			const OccupiedHidout = {
+				id: selectedHideout.id,
+				userId: selectedHideout.userId,
+				name: selectedHideout.name,
+				description: selectedHideout.description,
+				location: selectedHideout.location,
+				isOcupied: true
+			};
+		
+		updateHideout(OccupiedHidout)
+			
+	}
 
 	//---------------------------------CALL addCREW FUNCTION AND NAVIGATE BACK TO CREW PAGE ON BUTTON CLICK----------------------------//
 
@@ -127,6 +151,7 @@ getHideouts()
 		} else {
 			//Invoke addCrew passing crew as an argument
 			//Navigate back to crews page
+			SetHideoutOccupied(selectedHideout)
 			addCrew(newCrew)
 				.then(() => navigate("/crews"))
 		} 

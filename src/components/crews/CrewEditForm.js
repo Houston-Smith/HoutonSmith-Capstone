@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import { getCrewWithHideoutById, updateCrew } from "../../modules/CrewManager";
-import { getHideoutsOfActiveUser } from "../../modules/HideoutManager";
+import { getHideoutsOfActiveUser, getHideoutById, updateHideout } from "../../modules/HideoutManager";
 import "./CrewForm.css";
 
 export const CrewEditForm = () => {
@@ -18,6 +18,8 @@ export const CrewEditForm = () => {
   const [crew, setCrew] = useState({ name: "", description: "" });
   const [hideouts, setHideouts] = useState([])
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedHideout, setSelectedHideout] = useState([])
+  const [currentHideout, setCurrentHideout] = useState([])
 
 
 //--------------------------------------------SAVE crewID AS A VARIABLE USING useParams--------------------------------------------------//	
@@ -41,6 +43,14 @@ const getHideouts = () => {
 	})
 }
 
+const getCurrentHideout = (Id) => {
+	//Pull Hideouts array for the active user from API...
+	return getHideoutById(Id).then(hideout => {
+		//...then populate empty hideouts array with what comes back.
+		setCurrentHideout(hideout)
+	})
+}
+
 
 //------------------------------------------RUN getHideouts FUNCTION AFTER FIRST RENDER---------------------------------------------------//
 
@@ -48,13 +58,13 @@ useEffect(() => {
 getHideouts()
 }, [])
 
-
 //-----------POPULATES EMPTY CREW ARRAY WITH CREWS THAT POSESS A HIDEOUT ID MATCHING THIS HIDEOUTS ID-----------------------------------------//
 
 useEffect(() => {
   getCrewWithHideoutById(crewId)
     .then(crew => {
       setCrew(crew);
+      getCurrentHideout(crew.hideoutId)
       setIsLoading(false);
     });
 }, []);
@@ -65,15 +75,57 @@ useEffect(() => {
   const handleFieldChange = evt => {
     //create a copy of the crew array
     const stateToChange = { ...crew };
+
+    let selectedVal = evt.target.value
     // forms always provide values as strings. But we want to save the ids as numbers.
     if (evt.target.id.includes("Id")) {
 			evt.target.value = parseInt(evt.target.value)
 		}
+
+    //if the hideout is changed, update the selectedHideout for boolean change later(SetHideoutOccupied)
+		if (evt.target.id.includes("hideoutId")) {
+			selectedVal = parseInt(selectedVal)
+			getHideoutById(selectedVal)
+			.then((hideout) => setSelectedHideout(hideout))
+		}
+
     //Change the property of the input field to a new value
     stateToChange[evt.target.id] = evt.target.value;
     //Update state
     setCrew(stateToChange);
   };
+
+//-----------------------------------------SETS THE HIDEOUT CHOSEN AS OCCUPIED IN THE DATA-----------------------------------------------//
+
+const SetHideoutOccupied = (selectedHideout) => {	
+
+  const OccupiedHidout = {
+    id: selectedHideout.id,
+    userId: selectedHideout.userId,
+    name: selectedHideout.name,
+    description: selectedHideout.description,
+    location: selectedHideout.location,
+    isOcupied: true
+  };
+
+updateHideout(OccupiedHidout) 
+}
+
+//-----------------------------------------SETS THE OLD HIDEOUT AS OPSN IN THE DATA-----------------------------------------------//
+
+const setHideoutOpen = (previousHideout) => {	
+
+  const previous = {
+    id: previousHideout.id,
+    userId: previousHideout.userId,
+    name: previousHideout.name,
+    description: previousHideout.description,
+    location: previousHideout.location,
+    isOcupied: false
+  };
+
+updateHideout(previous) 
+}
 
 
 //-------------UPDATES THE CREW WITH A DUPLICATE THAT HAS THE SAME PROPERTIES OTHER THAN ONES THAT WERE CHANGED---------------------------//
@@ -92,6 +144,8 @@ useEffect(() => {
     };
 
     //Changes the crew Object in the API and returns to the crews page
+  setHideoutOpen(currentHideout)
+  SetHideoutOccupied(selectedHideout)
   updateCrew(editedCrew)
     .then(() => navigate("/crews")
     )
