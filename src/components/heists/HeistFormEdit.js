@@ -6,21 +6,30 @@ import "./HeistForm.css";
 
 export const HeistEditForm = () => {
 
-	//-------------------------------------SAVE THE CURRENT USER'S ID AND OBJECT AS VARIABLES------------------------------------------------//	
+//-------------------------------------SAVE THE CURRENT USER'S ID AND OBJECT AS VARIABLES------------------------------------------------//	
 
 	let userObj = JSON.parse(sessionStorage.getItem("nutshell_user"))
 	let currentUser = userObj.id;
 
-
-  const [heist, setHeist] = useState({ name: "", description: "" });
+//-----------------------------------------------SET ISLOADING----------------------------------------------------------------------------//	
+  
   const [isLoading, setIsLoading] = useState(false);
 
+
+//-------------------------------------SAVE heistID AS A VARIABLE USING useParams---------------------------------------------------------//
+
   const {heistId} = useParams();
+
+
+//----------------------------------------DEFINE navigate AS useNavigate FOR FUTURE USE--------------------------------------------------//
+
   const navigate = useNavigate();
 
-	//---------------------------------------------------SET EMPTY CREWS ARRAY-------------------------------------------------------------//
+
+//---------------------------------------------------SET EMPTY CREWS AND HEISTS ARRAYS-------------------------------------------------------//
 
   const [crews, setCrews] = useState([])
+	const [heist, setHeist] = useState({ name: "", description: "" });
 
 
 //-----------------------------POPULATE EMPTY CREWS AND HEISTS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
@@ -64,7 +73,7 @@ useEffect(() => {
   };
 
 
-//-------------UPDATES THE CREW WITH A DUPLICATE THAT HAS THE SAME PROPERTIES OTHER THAN ONES THAT WERE CHANGED---------------------------//
+//-------------UPDATES THE HEIST WITH A DUPLICATE THAT HAS THE SAME PROPERTIES OTHER THAN ONES THAT WERE CHANGED---------------------------//
 
   const updateExistingHeist = evt => {
     evt.preventDefault()

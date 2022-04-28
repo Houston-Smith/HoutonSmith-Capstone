@@ -31,6 +31,9 @@ useEffect(() => {
   getCrew()
 }, [])
 
+
+//-----------------------------------------------GENERATE HTML FOR HIDEOUT CARD-------------------------------------------------------//
+
   return (
     <div className="card">
       <div className="card-content">
