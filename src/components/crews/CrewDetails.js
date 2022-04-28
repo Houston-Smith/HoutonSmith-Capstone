@@ -24,7 +24,6 @@ export const CrewDetails = () => {
   const {crewId} = useParams();
 
 
-
 //----------------------------------------DEFINE navigate AS useNavigate FOR FUTURE USE--------------------------------------------------//  
 
   const navigate = useNavigate()
@@ -113,6 +112,7 @@ updateCrony(editedCrony)
         <p>{crew.hideout?.name}</p>
         <p>{crew.description}</p>
         <h2>Crew Members:</h2>
+        <button type="button" className="btn btn-primary" onClick={() => {navigate(`/crews/${crew.id}/addcronies`)}}>Add Members</button>
       </section>
       <section className="card-container">
         {cronies.map(crony =>

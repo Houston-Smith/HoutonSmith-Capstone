@@ -1,15 +1,6 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
-export const DetailsCronyCard = ({crony, callFireCrony }) => {
-
-
-//----------------------------------------DEFINE navigate AS useNavigate FOR FUTURE USE--------------------------------------------------//  
-
-const navigate = useNavigate()
-
-
+export const CronyAddCard = ({crony, addCrony}) => {
 
   return (
     <div className="card">
@@ -38,8 +29,7 @@ const navigate = useNavigate()
               : <p><b>Additional Skills</b>: {crony.additionalSkills}</p>
             } 
         <p><b>Pay</b>: {crony.pay} gold</p>
-        <button type="button" className="btn btn-primary" onClick={() => callFireCrony(crony)}>Fire Crony</button>
-        <button type="button" className="btn btn-primary" onClick={() => {navigate(`/cronies/${crony.id}/crewEdit`)}}>Edit</button>
+        <button type="button" className="btn btn-primary" onClick={() => addCrony(crony)}>Add Crony</button>
       </div>
     </div>
   )
