@@ -33,11 +33,21 @@ export const CrewEditForm = () => {
   const navigate = useNavigate();
 
 
+//--------------------------------------------FILTERS CRONIES BY THEIR crewId-------------------------------------------------------------//
+
+const hideoutFilter = () => {
+  
+  return getHideoutsOfActiveUser(currentUser)
+    .then(hideout =>
+      hideout.filter(hideout => hideout.isOcupied === false ))
+  
+}
+  
 //-----------------------------------POPULATE EMPTY HIDEOUTS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
 
 const getHideouts = () => {
 	//Pull Hideouts array for the active user from API...
-	return getHideoutsOfActiveUser(currentUser).then(hideouts => {
+	return hideoutFilter(currentUser).then(hideouts => {
 		//...then populate empty hideouts array with what comes back.
 		setHideouts(hideouts)
 	})
@@ -48,6 +58,7 @@ const getCurrentHideout = (Id) => {
 	return getHideoutById(Id).then(hideout => {
 		//...then populate empty hideouts array with what comes back.
 		setCurrentHideout(hideout)
+    setSelectedHideout(hideout)
 	})
 }
 
@@ -86,7 +97,8 @@ useEffect(() => {
 		if (evt.target.id.includes("hideoutId")) {
 			selectedVal = parseInt(selectedVal)
 			getHideoutById(selectedVal)
-			.then((hideout) => setSelectedHideout(hideout))
+			.then((hideout) => 
+      setSelectedHideout(hideout))
 		}
 
     //Change the property of the input field to a new value
@@ -98,6 +110,8 @@ useEffect(() => {
 //-----------------------------------------SETS THE HIDEOUT CHOSEN AS OCCUPIED IN THE DATA-----------------------------------------------//
 
 const SetHideoutOccupied = (selectedHideout) => {	
+
+  console.log(selectedHideout)
 
   const OccupiedHidout = {
     id: selectedHideout.id,
@@ -114,6 +128,8 @@ updateHideout(OccupiedHidout)
 //-----------------------------------------SETS THE OLD HIDEOUT AS OPSN IN THE DATA-----------------------------------------------//
 
 const setHideoutOpen = (previousHideout) => {	
+
+  console.log(previousHideout)
 
   const previous = {
     id: previousHideout.id,

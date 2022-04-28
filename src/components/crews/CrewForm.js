@@ -38,11 +38,23 @@ export const CrewForm = () => {
 
 
 
+//--------------------------------------------FILTERS CRONIES BY THEIR crewId-------------------------------------------------------------//
+
+const hideoutFilter = () => {
+  
+  return getHideoutsOfActiveUser(currentUser)
+    .then(hideout =>
+      hideout.filter(hideout => hideout.isOcupied === false))
+  
+}
+
+
 //-----------------------------------POPULATE EMPTY CREWS ARRAY WITH OBJECTS FROM THE API----------------------------------------------//
+
 
 const getHideouts = () => {
 	//Pull Crews array for the active user from API...
-	return getHideoutsOfActiveUser(currentUser).then(hideouts => {
+	return hideoutFilter(currentUser).then(hideouts => {
 		//...then populate empty crews array with what comes back.
 		setHideouts(hideouts)
 	})
