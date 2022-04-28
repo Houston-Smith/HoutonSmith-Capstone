@@ -24,7 +24,7 @@ export const CronyForm = () => {
 	//----------------------------------SET HIDEOUTS AND CURRENT CURRENT HIDEOUT ARRAYS WITH EMPTY KEYS---------------------------------------//
 
 	const [crony, setCrony] = useState({
-		managerId: currentUser,
+		userId: currentUser,
 		crewId: "1",
 		name: "",
 		species: "",

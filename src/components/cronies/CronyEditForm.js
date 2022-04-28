@@ -69,7 +69,7 @@ useEffect(() => {
 
     const editedCrony = {
       id: cronyId,
-	    managerId: crony.managerId,
+	    userId: crony.userId,
       crewId: crony.crewId,
       name: crony.name,
       species: crony.species,

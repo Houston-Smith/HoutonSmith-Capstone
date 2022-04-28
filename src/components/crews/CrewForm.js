@@ -23,7 +23,7 @@ export const CrewForm = () => {
 	//---------------------------------------SET CREWS, AND CURRENT CREWS ARRAYS WITH EMPTY KEYS-----------------------====------------------//
 
 	const [crew, setCrew] = useState({
-		managerId: currentUser,
+		userId: currentUser,
 		name: "",
 		hideoutId: 0,
 		description: "",

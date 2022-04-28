@@ -18,7 +18,7 @@ export const getAllHeists = () => {
 //-----------------------------------------RETRIEVES A LIST OF HEISTS OF THE ACTIVE USER FROM THE API-----------------------------------//
 
 export const getHeistsOfActiveUser = (userId) => {
-  return fetch (`${URL}/heists?managerId=${userId}`)
+  return fetch (`${URL}/heists?userId=${userId}`)
     .then(response => response.json())
 }
 

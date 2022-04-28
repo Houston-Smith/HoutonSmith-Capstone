@@ -18,7 +18,7 @@ export const getAllCrews = () => {
 //-----------------------------------------RETRIEVES A LIST OF CREWS OF THE ACTIVE USER FROM THE API-----------------------------------//
 
 export const getCrewsOfActiveUser = (userId) => {
-  return fetch (`${URL}/crews?managerId=${userId}`)
+  return fetch (`${URL}/crews?userId=${userId}`)
     .then(response => response.json())
 }
 

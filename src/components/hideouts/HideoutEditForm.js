@@ -23,7 +23,7 @@ export const HideoutEditForm = () => {
 
     const editedHideout = {
       id: hideoutId,
-	    managerId: hideout.managerId,
+	    userId: hideout.userId,
       name: hideout.name,
       location: hideout.location,
       description: hideout.description,

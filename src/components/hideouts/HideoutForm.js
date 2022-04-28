@@ -22,7 +22,7 @@ export const HideoutForm = () => {
 	//----------------------------------SET HIDEOUTS AND CURRENT CURRENT HIDEOUT ARRAYS WITH EMPTY KEYS---------------------------------------//
 
 	const [hideout, setHideout] = useState({
-		managerId: currentUser,
+		userId: currentUser,
 		name: "",
 		description: "",
 		location: "",
