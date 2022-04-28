@@ -24,7 +24,6 @@ export const CrewDetails = () => {
   const {crewId} = useParams();
 
 
-
 //----------------------------------------DEFINE navigate AS useNavigate FOR FUTURE USE--------------------------------------------------//  
 
   const navigate = useNavigate()
