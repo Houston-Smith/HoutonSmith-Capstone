@@ -76,43 +76,47 @@ export const HideoutEditForm = () => {
 
   return (
     <>
-      <form className="taskForm">
+    <main>
+      <section className="hideout-form-box">
+        <form className="hideout-form-edit">
 
-      <h2>Update A Hideout</h2>
+        <h2>Update A Hideout</h2>
 
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="name">Name:</label>
-					<input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Hideout name" value={hideout.name} />
-				</div>
-			</fieldset>
+        <fieldset>
+          <div className="form-group-hideout">
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Hideout name" value={hideout.name} />
+          </div>
+        </fieldset>
 
-      <fieldset>
-				<div className="form-group">
-					<label htmlFor="name">Location:</label>
-					<input type="text" id="location" onChange={handleFieldChange} required className="form-control" placeholder="Hideout location" value={hideout.location} />
-				</div>
-			</fieldset>
+        <fieldset>
+          <div className="form-group-hideout">
+            <label htmlFor="name">Location:</label>
+            <input type="text" id="location" onChange={handleFieldChange} required className="form-control" placeholder="Hideout location" value={hideout.location} />
+          </div>
+        </fieldset>
 
-      <fieldset>
-				<div className="form-group">
-					<label htmlFor="date">Description:</label>
-					<input type="text" id="description" onChange={handleFieldChange} required className="form-control" placeholder="Hideout Description" value={hideout.description} />
-				</div>
-			</fieldset>
+        <fieldset>
+          <div className="form-group-hideout">
+            <label htmlFor="date">Description:</label>
+            <input type="text" id="description" onChange={handleFieldChange} required className="form-control" placeholder="Hideout Description" value={hideout.description} />
+          </div>
+        </fieldset>
 
-      <div className="buttons">
-        <button type="button" disabled={isLoading} className="btn btn-primary"
-          onClick={updateExistingHideout}>
-          Update
-            </button>
+        <div className="buttons">
+          <button type="button" disabled={isLoading} className="btn btn-primary"
+            onClick={updateExistingHideout}>
+            Update
+              </button>
 
-            <button type="button" disabled={isLoading} className="btn btn-primary"
-          onClick={ClickCancel}>
-          Cancel
-            </button>   
-      </div>
-    </form>
+              <button type="button" disabled={isLoading} className="btn btn-primary"
+            onClick={ClickCancel}>
+            Cancel
+              </button>   
+        </div>
+      </form>
+      </section>
+    </main>
   </>
   );
 }

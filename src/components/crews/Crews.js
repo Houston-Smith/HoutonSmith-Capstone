@@ -56,15 +56,17 @@ const callDeleteCrew = (id) => {
 
   return (
     <main>
-      <section className="friend-header">
-        <h1>Crew List</h1>
-        <button type="button" className="btn btn-primary" onClick={() => {navigate("/crews/add")}}>Create Crew</button>
-      </section>
-      <section className="card-container">
-        {crews.map(crew =>
-          <CrewCard key={crew.id} crew={crew} callDeleteCrew={callDeleteCrew}/>
-        )}
-      </section>
+      <section className="crews-box">
+        <section className="crews-header">
+          <h1>Crew List</h1>
+          <button type="button" className="btn btn-primary" onClick={() => {navigate("/crews/add")}}>Create Crew</button>
+        </section>
+        <section className="card-container-crews">
+          {crews.map(crew =>
+            <CrewCard key={crew.id} crew={crew} callDeleteCrew={callDeleteCrew}/>
+          )}
+        </section>
+      </section> 
     </main>
   );
 }

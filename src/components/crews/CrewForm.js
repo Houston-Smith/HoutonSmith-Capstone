@@ -180,47 +180,51 @@ getHideouts()
 	//----------------------------------------------GENERATE HTML FOR NEW CREW FORM-------------------------------------------------------//
 
 	return (
-		<form className="friendForm">
-			<h2>Assemble Crew</h2>
+	<main>
+		<section className="crews-form-box">
+			<form className="crews-form-new">
+				<h2>Assemble Crew</h2>
 
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="name">Crew Name:</label>
-					<input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Crew name" value={crew.name} />
+				<fieldset>
+					<div className="form-group-crews">
+						<label htmlFor="name">Crew Name:</label>
+						<input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Crew name" value={crew.name} />
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<div className="form-group-crews">
+						<label htmlFor="email">Crew Description:</label>
+						<input type="text" id="description" onChange={handleControlledInputChange} required className="form-control" placeholder="Crew Description" value={crew.description} />
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<div className="form-group-crews">
+						<label htmlFor="hideout">Assign Hideout:</label>
+						<select value={crew.hideoutId} name="hideoutId" id="hideoutId" onChange={handleControlledInputChange} className="form-control" >
+							<option disabled hidden value="0">Select a Hideout</option>
+							{hideouts.map(h => (
+							<option key={h.id} value={h.id}>
+									{h.name}
+							</option>
+							))}
+						</select>
+					</div>
+				</fieldset>
+
+				<div className="buttons">
+					<button type="button"
+						onClick={ClickAddCrew}>
+						Assemble Crew
+					</button>
+					<button type="button"
+						onClick={ClickCancel}>
+						Cancel
+					</button>
 				</div>
-			</fieldset>
-
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="email">Crew Description:</label>
-					<input type="text" id="description" onChange={handleControlledInputChange} required className="form-control" placeholder="Crew Description" value={crew.description} />
-				</div>
-			</fieldset>
-
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="hideout">Assign Hideout:</label>
-					<select value={crew.hideoutId} name="hideoutId" id="hideoutId" onChange={handleControlledInputChange} className="form-control" >
-						<option disabled hidden value="0">Select a Hideout</option>
-						{hideouts.map(h => (
-						<option key={h.id} value={h.id}>
-								{h.name}
-						</option>
-						))}
-					</select>
-				</div>
-			</fieldset>
-
-			<div className="buttons">
-				<button type="button" className="btn btn-primary"
-					onClick={ClickAddCrew}>
-					Assemble Crew
-				</button>
-				<button type="button" className="btn btn-primary"
-					onClick={ClickCancel}>
-					Cancel
-				</button>
-			</div>
-		</form>
+			</form>
+		</section>
+	</main>			
 	)
 }

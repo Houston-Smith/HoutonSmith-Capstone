@@ -1,17 +1,208 @@
-.friendForm {
+main {
   display: flex;
   flex-direction: column;
   margin-left: 2em;
   margin-top: 1em;
-  width: 30%;
+  align-items: center;
 }
 
-.form-group {
+.crews-form-box {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
+  ), url(../../../public/images/Wood-Background.jpg.jpg);
+  border: black 5px solid;
+  box-shadow: 0px 0px 35px 5px rgba(0,0,0,0.75);
+  width: 30em;
+  padding: 3em 2em;
+}
+
+.crews-form-new h2{
+  color:white;
+  text-shadow: 0.1em 0.1em black;
+  font-weight: bolder;
+  font-size: 30px;
+  margin-bottom: 1.5em;
+}
+
+.crews-form-edit h2{
+  color:white;
+  text-shadow: 0.1em 0.1em black;
+  font-weight: bolder;
+  font-size: 30px;
+  margin-bottom: 1.5em;
+}
+
+.form-group-crews {
 margin-top: .5em;
+color: white;
+font-weight: bolder;
+text-shadow: 0.1em 0.1em black;
+margin-bottom: 2em;
 }
 
-.friendForm button {
+.form-group-crews label{
+    margin-right: 1em;
+  }
+
+.buttons button {
 margin-top: 1.5em;
 width: 40%;
 margin-right: 1em;
 }
+
+.crews-details-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
+  ), url(../../../public/images/Wood-Background.jpg.jpg);
+  border: black 5px solid;
+  box-shadow: 0px 0px 35px 5px rgba(0,0,0,0.75);
+  width: 100em;
+  padding: 3em 2em;
+}
+
+.crews-details-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.crews-details-header h1 {
+  color:white;
+  text-shadow: 0.1em 0.1em black;
+  font-weight: bolder;
+  font-size: 40px;
+}
+
+.crews-details-text p {
+color: white;
+font-weight: bolder;
+text-shadow: 0.1em 0.1em black;
+text-align:  center;
+font-size: 20px;
+}
+
+.crews-details-members {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3em;
+}
+
+.crews-details-members button{
+  height: 2em
+}
+
+
+.crews-details-members h2{
+  margin-right: 1em;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 0.1em 0.1em black;
+  text-align:  center;
+  font-size: 30px;
+  }
+
+  .crews-heist-text h2 {
+  color: white;
+  font-weight: bolder;
+  text-shadow: 0.1em 0.1em black;
+  text-align:  center;
+  font-size: 30px;
+  margin-top: 3em;
+  }
+
+.card-crews-crony {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    margin: 1em;
+    width: 29%;
+    padding: .5em;
+    background-color: rgb(213, 213, 138);
+    box-shadow: 0px 7px 10px 4px rgba(0,0,0,0.75);
+  }
+  
+.card-crews-crony h2 {
+    color: black;
+    text-shadow: none;
+    font-weight: bolder;
+    font-size: 24px
+  }
+  
+.card-crews-crony p {
+    color: black;
+    text-shadow: none;
+  }
+  
+.card-crews-crony button {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: black;
+    font-weight: bolder;
+    margin-right: 1em;
+    font-size: 16px;
+  }
+  
+.card-crews-crony button:hover {
+    color: red;
+  }
+
+.crews-crony-card-container {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  width: 90%
+}
+  
+.card-crews-heist {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  margin: 1em;
+  width: 23%;
+  padding: .5em;
+  background-color: rgb(213, 213, 138);
+  box-shadow: 0px 7px 10px 4px rgba(0,0,0,0.75);
+}
+
+.card-crews-heist h2 {
+  color: black;
+  text-shadow: none;
+  font-weight: bolder;
+  font-size: 24px
+}
+
+.card-crews-heist p {
+  color: black;
+  text-shadow: none;
+}
+
+.card-crews-heist button {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  color: black;
+  font-weight: bolder;
+  margin-right: 1em;
+  font-size: 16px;
+}
+
+.card-crews-heist button:hover {
+  color: red;
+}
+
+.crews-heist-card-container {
+margin-top: 2em;
+display: flex;
+flex-direction: row;
+width: 90%
+}
+

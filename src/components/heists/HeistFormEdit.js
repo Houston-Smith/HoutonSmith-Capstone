@@ -109,64 +109,68 @@ useEffect(() => {
 
   return (
     <>
-      <form className="taskForm">
+		<main>
+			<section className="heist-form-box">
+				<form className="heist-form-edit">
 
-      <h2>Change a Heist</h2>
+				<h2>Change a Heist</h2>
 
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="name">Name:</label>
-					<input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Heist name" value={heist.name} />
+				<fieldset>
+					<div className="form-group-heist">
+						<label htmlFor="name">Name:</label>
+						<input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Heist name" value={heist.name} />
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<div className="form-group-heist">
+						<label htmlFor="description">Description:</label>
+						<input type="text" id="description" onChange={handleFieldChange} required className="form-control" placeholder="Heist description" value={heist.description} />
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<div className="form-group-heist">
+						<label htmlFor="location">Location:</label>
+						<input type="text" id="location" onChange={handleFieldChange} required className="form-control" placeholder="Heist location" value={heist.location} />
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<div className="form-group-heist">
+						<label htmlFor="date">Date:</label>
+						<input type="date" id="date" onChange={handleFieldChange} required className="form-control" placeholder="Heist date" value={heist.date} />
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<div className="form-group-heist">
+						<label htmlFor="hideout">Assign Hideout:</label>
+						<select value={heist.crewId} name="crewId" id="crewId" onChange={handleFieldChange} className="form-control" >
+							<option disabled hidden value="0">Assign a Crew</option>
+							{crews.map(c => (
+							<option key={c.id} value={c.id}>
+									{c.name}
+							</option>
+							))}
+						</select>
+					</div>
+				</fieldset>
+
+				<div className="buttons">
+					<button type="button" disabled={isLoading} className="btn btn-primary"
+						onClick={updateExistingHeist}>
+						Update
+							</button>
+
+							<button type="button" disabled={isLoading} className="btn btn-primary"
+						onClick={ClickCancel}>
+						Cancel
+							</button>   
 				</div>
-			</fieldset>
-
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="description">Description:</label>
-					<input type="text" id="description" onChange={handleFieldChange} required className="form-control" placeholder="Heist description" value={heist.description} />
-				</div>
-			</fieldset>
-
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="location">Location:</label>
-					<input type="text" id="location" onChange={handleFieldChange} required className="form-control" placeholder="Heist location" value={heist.location} />
-				</div>
-			</fieldset>
-
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="date">Date:</label>
-					<input type="date" id="date" onChange={handleFieldChange} required className="form-control" placeholder="Heist date" value={heist.date} />
-				</div>
-			</fieldset>
-
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="hideout">Assign Hideout:</label>
-					<select value={heist.crewId} name="crewId" id="crewId" onChange={handleFieldChange} className="form-control" >
-						<option disabled hidden value="0">Assign a Crew</option>
-						{crews.map(c => (
-						<option key={c.id} value={c.id}>
-								{c.name}
-						</option>
-						))}
-					</select>
-				</div>
-			</fieldset>
-
-      <div className="buttons">
-        <button type="button" disabled={isLoading} className="btn btn-primary"
-          onClick={updateExistingHeist}>
-          Update
-            </button>
-
-            <button type="button" disabled={isLoading} className="btn btn-primary"
-          onClick={ClickCancel}>
-          Cancel
-            </button>   
-      </div>
-    </form>
+			</form>
+		</section>	
+	</main>
   </>
   );
 }

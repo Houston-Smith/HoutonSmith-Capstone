@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./CrewForm";
+import "./CrewForm.css";
 import { getCroniesByCrew, updateCrony } from "../../modules/CronyManager";
 import { getCrewWithHideoutById } from "../../modules/CrewManager";
 import { getHideoutById } from "../../modules/HideoutManager";
@@ -104,26 +104,36 @@ updateCrony(editedCrony)
 
   return (
     <main>
-      <section className="friend-header">
-        <button type="button" className="btn btn-primary" onClick={() => {navigate("/crews")}}>Return to Crews</button>
-        <h1>{crew.name} Details</h1>
-        <section className="card-container">
-      </section>
-        <p>{crew.hideout?.name}</p>
-        <p>{crew.description}</p>
-        <h2>Crew Members:</h2>
-        <button type="button" className="btn btn-primary" onClick={() => {navigate(`/crews/${crew.id}/addcronies`)}}>Add Members</button>
-      </section>
-      <section className="card-container">
-        {cronies.map(crony =>
-          <DetailsCronyCard key={crony.id} crony={crony} callFireCrony={callFireCrony}/>
-        )}
-      </section>
-      <h2>Assigned Heists:</h2>
-      <section className="card-container">
-        {heists.map(heist =>
-          <DetailsHeistCard key={heist.id} heist={heist}/>
-        )}
+      <section className="crews-details-box">
+
+        <section className="crews-details-header">
+          <button type="button" className="btn btn-primary" onClick={() => {navigate("/crews")}}>Return to Crews</button>
+          <h1>{crew.name} Details</h1>
+        </section>
+
+        <section className="crews-details-text">
+          <p>{crew.hideout?.name}</p>
+          <p>{crew.description}</p>
+          <section className="crews-details-members">
+            <h2>Crew Members:</h2>
+            <button type="button" className="btn btn-primary" onClick={() => {navigate(`/crews/${crew.id}/addcronies`)}}>Add Members</button>
+          </section>
+        </section>
+
+        <section className="crews-crony-card-container">
+          {cronies.map(crony =>
+            <DetailsCronyCard key={crony.id} crony={crony} callFireCrony={callFireCrony}/>
+          )}
+        </section>
+        
+        <section className="crews-heist-text">
+          <h2>Assigned Heists:</h2>
+        </section>
+        <section className="crews-heist-card-container">
+          {heists.map(heist =>
+            <DetailsHeistCard key={heist.id} heist={heist}/>
+          )}
+        </section>
       </section>
     </main>
   );

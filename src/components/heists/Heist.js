@@ -56,14 +56,16 @@ const callDeleteHeist = (id) => {
 
   return (
     <main>
-      <section className="friend-header">
-        <h1>Upcoming Heists</h1>
-        <button type="button" className="btn btn-primary" onClick={() => {navigate("/heists/add")}}>Plan a Heist</button>
-      </section>
-      <section className="card-container">
-        {heists.map(heist =>
-          <HeistCard key={heist.id} heist={heist} callDeleteHeist={callDeleteHeist}/>
-        )}
+      <section className="heist-box">
+        <section className="heist-header">
+          <h1>Upcoming Heists</h1>
+          <button type="button" className="btn btn-primary" onClick={() => {navigate("/heists/add")}}>Plan a Heist</button>
+        </section>
+        <section className="card-container-heist">
+          {heists.map(heist =>
+            <HeistCard key={heist.id} heist={heist} callDeleteHeist={callDeleteHeist}/>
+          )}
+        </section>
       </section>
     </main>
   );

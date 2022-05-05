@@ -118,36 +118,45 @@ export const HideoutForm = () => {
 	//----------------------------------------------GENERATE HTML FOR NEW HIDEOUT FORM-------------------------------------------------------//
 
 	return (
-		<form className="friendForm">
-			<h2>Open Hideout</h2>
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="name">Hideout Name:</label>
-					<input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Hideout name" value={hideout.name} />
+	<main>
+		<section className="hideout-form-box">
+			<form className="hideout-form-new">
+				<h2>Open Hideout</h2>
+
+				<fieldset>
+					<div className="form-group-hideout">
+						<label htmlFor="name">Hideout Name:</label>
+						<input type="text" id="name" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Hideout name" value={hideout.name} />
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<div className="form-group-hideout">
+						<label htmlFor="email">Hideout Location:</label>
+						<input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="Hideout location" value={hideout.location} />
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<div className="form-group-hideout">
+						<label htmlFor="name">Hideout Description:</label>
+						<input type="text" id="description" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Hideout description" value={hideout.description} />
+					</div>
+				</fieldset>
+
+				<div className="buttons">
+					<button type="button" className="btn btn-primary"
+						onClick={ClickAddHideout}>
+						Open Hideout
+					</button>
+					<button type="button" className="btn btn-primary"
+						onClick={ClickCancel}>
+						Cancel
+					</button>
 				</div>
-			</fieldset>
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="email">Hideout Location:</label>
-					<input type="text" id="location" onChange={handleControlledInputChange} required className="form-control" placeholder="Hideout location" value={hideout.location} />
-				</div>
-			</fieldset>
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="name">Hideout Description:</label>
-					<input type="text" id="description" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Hideout description" value={hideout.description} />
-				</div>
-			</fieldset>
-			<div className="buttons">
-				<button type="button" className="btn btn-primary"
-					onClick={ClickAddHideout}>
-					Open Hideout
-				</button>
-				<button type="button" className="btn btn-primary"
-					onClick={ClickCancel}>
-					Cancel
-				</button>
-			</div>
-		</form>
+
+			</form>
+		</section>
+	</main>
 	)
 }

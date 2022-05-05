@@ -17,15 +17,15 @@ export const HeistCard = ({heist, callDeleteHeist}) => {
   }, []);
 
   return (
-    <div className="card">
-      <div className="card-content">
+    <div className="card-heist">
+      <div className="card-content-heist">
         <h2>{heist.name}</h2>
         <p>{heist.description}</p>
         <p>Location: {heist.location}</p>
         <p>Time: {heist.date}</p>
         <p>Assigned Crew: {crew.name}</p>
        
-        <button type="button" className="btn btn-primary" onClick={() => callDeleteHeist(heist.id)}>Abort Heist</button>
+        <button type="button" className="btn btn-primary" onClick={() => callDeleteHeist(heist.id)}>Cancel Heist</button>
         <button type="button" className="btn btn-primary" onClick={() => {navigate(`/heists/${heist.id}/edit`)}}>Edit</button>
       </div>
     </div>

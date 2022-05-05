@@ -102,28 +102,35 @@ const filterCronies = (event) => {
 
   return (
     <main>
-      <section className="friend-header">
-      <fieldset>
-				<div className="form-group">
-					<label htmlFor="crew">Filter Cronies:</label>
-					<select name="crewFilter" id="crewFilter" onChange={filterCronies} className="form-control" >
-            <option value="">All Cronies</option>
-            <option value="1">Crewless Cronies</option>
-						{crews.map(c => (
-						<option key={c.id} value={c.id}>
-								{c.name}
-						</option>
-						))}
-					</select>
-				</div>
-			</fieldset>
-        <h1>Crony List</h1>
-        <button type="button" className="btn btn-primary" onClick={() => {navigate("/cronies/add")}}>Crony Applications</button>
-      </section>
-      <section className="card-container">
-        {cronies.map(crony =>
-          <CronyCard key={crony.id} crony={crony} callDeleteCrony={callDeleteCrony}/>
-        )}
+      <section className="crony-box">
+        <section className="crony-header">
+
+        <fieldset>
+          <div className="form-group-crony">
+            <label htmlFor="crew">Filter Cronies:</label>
+            <select name="crewFilter" id="crewFilter" onChange={filterCronies} className="form-control" >
+              <option value="">All Cronies</option>
+              <option value="1">Crewless Cronies</option>
+              {crews.map(c => (
+              <option key={c.id} value={c.id}>
+                  {c.name}
+              </option>
+              ))}
+            </select>
+          </div>
+        </fieldset>
+
+          <h1>Crony List</h1>
+
+          <button type="button" className="btn btn-primary" onClick={() => {navigate("/cronies/add")}}>Crony Applications</button>
+        </section>
+
+        <section className="card-container-crony">
+          {cronies.map(crony =>
+            <CronyCard key={crony.id} crony={crony} callDeleteCrony={callDeleteCrony}/>
+          )}
+        </section>
+
       </section>
     </main>
   );
