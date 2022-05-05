@@ -179,50 +179,54 @@ updateHideout(previous)
 
   return (
     <>
-      <form className="taskForm">
+      <main>
+        <section className="crews-form-box">   
+          <form className="crews-form-edit">
 
-      <h2>Update A Crew</h2>
+          <h2>Update A Crew</h2>
 
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="name">Crew:</label>
-					<input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Crew name" value={crew.name} />
-				</div>
-			</fieldset>
+          <fieldset>
+            <div className="form-group-crews">
+              <label htmlFor="name">Crew:</label>
+              <input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Crew name" value={crew.name} />
+            </div>
+          </fieldset>
 
-      <fieldset>
-				<div className="form-group">
-					<label htmlFor="date">Description:</label>
-					<input type="text" id="description" onChange={handleFieldChange} required className="form-control" placeholder="Crew Description" value={crew.description} />
-				</div>
-			</fieldset>
+          <fieldset>
+            <div className="form-group-crews">
+              <label htmlFor="date">Description:</label>
+              <input type="text" id="description" onChange={handleFieldChange} required className="form-control" placeholder="Crew Description" value={crew.description} />
+            </div>
+          </fieldset>
 
-      <fieldset>
-				<div className="form-group">
-					<label htmlFor="hideout">Assign Hideout:</label>
-					<select value={crew.hideoutId} name="hideoutId" id="hideoutId" onChange={handleFieldChange} className="form-control" >
-						<option disabled hidden value="0">Select a Hideout</option>
-						{hideouts.map(h => (
-						<option key={h.id} value={h.id}>
-								{h.name}
-						</option>
-						))}
-					</select>
-				</div>
-			</fieldset>
+          <fieldset>
+            <div className="form-group-crews">
+              <label htmlFor="hideout">Assign Hideout:</label>
+              <select value={crew.hideoutId} name="hideoutId" id="hideoutId" onChange={handleFieldChange} className="form-control" >
+                <option disabled hidden value="0">Select a Hideout</option>
+                {hideouts.map(h => (
+                <option key={h.id} value={h.id}>
+                    {h.name}
+                </option>
+                ))}
+              </select>
+            </div>
+          </fieldset>
 
-      <div className="buttons">
-        <button type="button" disabled={isLoading} className="btn btn-primary"
-          onClick={updateExistingCrew}>
-          Update
-            </button>
-
+          <div className="buttons">
             <button type="button" disabled={isLoading} className="btn btn-primary"
-          onClick={ClickCancel}>
-          Cancel
-            </button>   
-      </div>
-    </form>
+              onClick={updateExistingCrew}>
+              Update
+                </button>
+
+                <button type="button" disabled={isLoading} className="btn btn-primary"
+              onClick={ClickCancel}>
+              Cancel
+                </button>   
+          </div>
+        </form>
+      </section> 
+    </main>
   </>
   );
 }

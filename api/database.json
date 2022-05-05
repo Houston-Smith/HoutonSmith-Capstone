@@ -67,6 +67,15 @@
       "date": "2022-04-30",
       "crewId": 8,
       "id": 4
+    },
+    {
+      "userId": 2,
+      "name": "Filler Heist",
+      "description": "Just for Filler",
+      "location": "Wherever",
+      "date": "2022-05-20",
+      "crewId": 4,
+      "id": 5
     }
   ],
   "hideouts": [
@@ -287,7 +296,7 @@
     },
     {
       "userId": 2,
-      "crewId": "1",
+      "crewId": "4",
       "name": "Test Crony",
       "species": "Kenku",
       "skill1": "Acrobat",
