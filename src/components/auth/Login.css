@@ -40,8 +40,8 @@ fieldset {
 
 .fieldset--box {
   background-image: linear-gradient(
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.1)
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.3)
   ), url(../../../public/images/Wood-Background.jpg.jpg);
   border: black 3px solid;
   display: flex;

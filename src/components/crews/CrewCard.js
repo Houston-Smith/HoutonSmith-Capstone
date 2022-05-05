@@ -26,8 +26,8 @@ export const CrewCard = ({crew, callDeleteCrew}) => {
   }, []);
 
   return (
-    <div className="card">
-      <div className="card-content">
+    <div className="card-crews">
+      <div className="card-content-crews">
         <h2>{crew.name}</h2>
         <p>Hideout: {hideout.name}</p>
         <p>{crew.description}</p>

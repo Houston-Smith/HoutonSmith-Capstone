@@ -82,20 +82,17 @@ const editedCrony = {
 
   return (
     <main>
-      <section className="friend-header">
-      <fieldset>
-				<div className="form-group">
-					<label htmlFor="crew">Add Cronies:</label>
-				</div>
-			</fieldset>
-        <h1>Crony List</h1>
-        <button type="button" className="btn btn-primary" onClick={() => {navigate(`/crews/${crewId}/details`)}}>Back to Crew</button>
-      </section>
-      <section className="card-container">
-        {cronies.map(crony =>
-          <CronyAddCard key={crony.id} crony={crony} addCrony={addCrony}/>
-        )}
-      </section>
+      <section className="crews-box">
+        <section className="crews-header">
+          <h1>Add Cronies</h1>
+          <button type="button" className="btn btn-primary" onClick={() => {navigate(`/crews/${crewId}/details`)}}>Back to Crew</button>
+        </section>
+        <section className="card-container-crews">
+          {cronies.map(crony =>
+            <CronyAddCard key={crony.id} crony={crony} addCrony={addCrony}/>
+          )}
+        </section>
+      </section>        
     </main>
   );
 }

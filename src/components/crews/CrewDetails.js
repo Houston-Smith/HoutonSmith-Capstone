@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./CrewForm";
+import "./CrewForm.css";
 import { getCroniesByCrew, updateCrony } from "../../modules/CronyManager";
 import { getCrewWithHideoutById } from "../../modules/CrewManager";
 import { getHideoutById } from "../../modules/HideoutManager";

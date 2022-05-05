@@ -284,6 +284,17 @@
       "additionalSkills": "",
       "pay": "2",
       "id": 9
+    },
+    {
+      "userId": 2,
+      "crewId": "1",
+      "name": "Test Crony",
+      "species": "Kenku",
+      "skill1": "Acrobat",
+      "skill2": "Arcana Expert",
+      "additionalSkills": "Baking",
+      "pay": "5",
+      "id": 10
     }
   ],
   "skills": [

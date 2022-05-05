@@ -12,8 +12,8 @@ const navigate = useNavigate()
 
 
   return (
-    <div className="card">
-      <div className="card-content">
+    <div className="card-crews">
+      <div className="card-content-crews">
         <h2>{crony.name}</h2>
         <p>{crony.species}</p>
         <p><b>Skill Sets</b>:</p>
