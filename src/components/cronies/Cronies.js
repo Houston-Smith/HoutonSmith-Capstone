@@ -125,7 +125,7 @@ const filterCronies = (event) => {
           <button type="button" className="btn btn-primary" onClick={() => {navigate("/cronies/add")}}>Crony Applications</button>
         </section>
 
-        <section className="card-container">
+        <section className="card-container-crony">
           {cronies.map(crony =>
             <CronyCard key={crony.id} crony={crony} callDeleteCrony={callDeleteCrony}/>
           )}

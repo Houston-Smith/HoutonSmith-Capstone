@@ -48,6 +48,7 @@ body {
 
 .card-container-crony {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
