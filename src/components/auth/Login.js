@@ -49,27 +49,29 @@ export const Login = ({setAuthUser}) => {
 			</dialog>
 			<section>
 				<form className="form--login" onSubmit={handleLogin}>
-					<h2>What's the password?</h2>
-					<fieldset>
-						<label htmlFor="inputPassword"> Password </label>
-						<input
-							type="password"
-							id="password"
-							className="form-control"
-							placeholder="Password"
-							required
-							autoFocus
-							value={loginUser.password}
-							onChange={handleInputChange}
-						/>
-					</fieldset>
-					<fieldset>
-						<button type="submit">Sign in</button>
-					</fieldset>
+						<section className="fieldset--box">
+							<h2>What's the password?</h2>
+							<fieldset>
+								<input
+									type="password"
+									id="password"
+									className="form-control"
+									placeholder="Password"
+									required
+									autoFocus
+									value={loginUser.password}
+									onChange={handleInputChange}
+								/>
+							</fieldset>
+
+							<fieldset>
+								<button type="submit">Sign in</button>
+							</fieldset>
+							<section className="link--register">
+								<Link to="/register">Register for an account</Link>
+							</section>
+						</section>
 				</form>
-			</section>
-			<section className="link--register">
-				<Link to="/register">Register for an account</Link>
 			</section>
 		</main>
 	);
