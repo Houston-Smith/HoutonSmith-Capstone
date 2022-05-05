@@ -142,85 +142,89 @@ const ClickCancel = (event) => {
 
   return (
     <>
-      <form className="taskForm">
+		<main>
+			<section className="crews-form-box">  
+					<form className="crews-form-edit">
 
-      <h2>Edit a Crony</h2>
+					<h2>Edit a Crony</h2>
 
-      <fieldset>
-				<div className="form-group">
-					<label htmlFor="name">Crony Name:</label>
-					<input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Crony name" value={crony.name} />
-				</div>
-			</fieldset>
+					<fieldset>
+						<div className="form-group-crews">
+							<label htmlFor="name">Crony Name:</label>
+							<input type="text" id="name" onChange={handleFieldChange} required autoFocus className="form-control" placeholder="Crony name" value={crony.name} />
+						</div>
+					</fieldset>
 
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="species">Crony Description:</label>
-					<select type="text" id="species" onChange={handleFieldChange} required className="form-control" placeholder="Crony Description" value={crony.species} >
-						<option disabled hidden value="">Select a Description</option>
-						<option value="Goblin">Goblin</option>
-						<option value="Kenku">Kenku</option>
-						<option value="Kobold">Kobold</option>
-					</select>
-				</div>
-			</fieldset>
+					<fieldset>
+						<div className="form-group-crews">
+							<label htmlFor="species">Crony Description:</label>
+							<select type="text" id="species" onChange={handleFieldChange} required className="form-control" placeholder="Crony Description" value={crony.species} >
+								<option disabled hidden value="">Select a Description</option>
+								<option value="Goblin">Goblin</option>
+								<option value="Kenku">Kenku</option>
+								<option value="Kobold">Kobold</option>
+							</select>
+						</div>
+					</fieldset>
 
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="skills">Special Skills:</label>
-					<select value={crony.skill1} name="skill1" id="skill1" onChange={handleFieldChange} className="form-control" >
-						<option disabled hidden value="">Select a skill</option>
-						<option value="">None</option>
-						{skills.map(s => (
-						<option key={s.id} value={s.name}>
-								{s.name}
-						</option>
-						))}
-					</select>
-				</div>
-			</fieldset>
+					<fieldset>
+						<div className="form-group-crews">
+							<label htmlFor="skills">Special Skills:</label>
+							<select value={crony.skill1} name="skill1" id="skill1" onChange={handleFieldChange} className="form-control" >
+								<option disabled hidden value="">Select a skill</option>
+								<option value="">None</option>
+								{skills.map(s => (
+								<option key={s.id} value={s.name}>
+										{s.name}
+								</option>
+								))}
+							</select>
+						</div>
+					</fieldset>
 
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="skills">Special Skills:</label>
-					<select value={crony.skill2} name="skill2" id="skill2" onChange={handleFieldChange} className="form-control" >
-						<option disabled hidden value="">Select a skill</option>
-						<option value="">None</option>
-						{skills.map(s => (
-						<option key={s.id} value={s.name}>
-								{s.name}
-						</option>
-						))}
-					</select>
-				</div>
-			</fieldset>
+					<fieldset>
+						<div className="form-group-crews">
+							<label htmlFor="skills">Special Skills:</label>
+							<select value={crony.skill2} name="skill2" id="skill2" onChange={handleFieldChange} className="form-control" >
+								<option disabled hidden value="">Select a skill</option>
+								<option value="">None</option>
+								{skills.map(s => (
+								<option key={s.id} value={s.name}>
+										{s.name}
+								</option>
+								))}
+							</select>
+						</div>
+					</fieldset>
 
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="additionalSkills">Additional Skills:</label>
-					<input type="text" id="additionalSkills" onChange={handleFieldChange} required className="form-control" placeholder="Additional Skills" value={crony.additionalSkills} />
-				</div>
-			</fieldset>
+					<fieldset>
+						<div className="form-group-crews">
+							<label htmlFor="additionalSkills">Additional Skills:</label>
+							<input type="text" id="additionalSkills" onChange={handleFieldChange} required className="form-control" placeholder="Additional Skills" value={crony.additionalSkills} />
+						</div>
+					</fieldset>
 
-			<fieldset>
-				<div className="form-group">
-					<label htmlFor="name">Crony Pay:</label>
-					<input type="number" id="pay" onChange={handleFieldChange} required className="form-control" placeholder="Crony Pay" value={crony.pay} />
-				</div>
-			</fieldset>
+					<fieldset>
+						<div className="form-group-crews">
+							<label htmlFor="name">Crony Pay:</label>
+							<input type="number" id="pay" onChange={handleFieldChange} required className="form-control" placeholder="Crony Pay" value={crony.pay} />
+						</div>
+					</fieldset>
 
-      <div className="buttons">
-        <button type="button" disabled={isLoading} className="btn btn-primary"
-          onClick={updateExistingCrony}>
-          Update
-            </button>
+					<div className="buttons">
+						<button type="button" disabled={isLoading} className="btn btn-primary"
+							onClick={updateExistingCrony}>
+							Update
+								</button>
 
-            <button type="button" disabled={isLoading} className="btn btn-primary"
-          onClick={ClickCancel}>
-          Cancel
-            </button>   
-      </div>
-    </form>
+								<button type="button" disabled={isLoading} className="btn btn-primary"
+							onClick={ClickCancel}>
+							Cancel
+								</button>   
+					</div>
+				</form>
+			</section>
+		</main>
   </>
   );
 }
