@@ -32,8 +32,8 @@ useEffect(() => {
 
 
   return (
-    <div className="card">
-      <div className="card-content">
+    <div className="card-crony">
+      <div className="card-content-crony">
         <h2>{crony.name}</h2>
         <p>{crony.species}</p>
         <p><b>Skill Sets</b>:</p>
