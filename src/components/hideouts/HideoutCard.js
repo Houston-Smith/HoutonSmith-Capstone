@@ -35,8 +35,8 @@ useEffect(() => {
 //-----------------------------------------------GENERATE HTML FOR HIDEOUT CARD-------------------------------------------------------//
 
   return (
-    <div className="card">
-      <div className="card-content">
+    <div className="card-hideout">
+      <div className="card-content-hideout">
         <h2>{hideout.name}</h2>
         <p>{hideout.description}</p>
         <p>{hideout.location}</p>

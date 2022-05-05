@@ -55,14 +55,16 @@ const callDeleteHideout = (id) => {
 
   return (
     <main>
-      <section className="friend-header">
-        <h1>Hideout List</h1>
-        <button type="button" className="btn btn-primary" onClick={() => {navigate("/hideouts/add")}}>Create Hideouts</button>
-      </section>
-      <section className="card-container">
-        {hideouts.map(hideout =>
-          <HideoutCard key={hideout.id} hideout={hideout} callDeleteHideout={callDeleteHideout}/>
-        )}
+      <section className="hideout-box">
+        <section className="hideout-header">
+          <h1>Hideout List</h1>
+          <button type="button" className="btn btn-primary" onClick={() => {navigate("/hideouts/add")}}>Create Hideouts</button>
+        </section>
+        <section className="card-container-hideout">
+          {hideouts.map(hideout =>
+            <HideoutCard key={hideout.id} hideout={hideout} callDeleteHideout={callDeleteHideout}/>
+          )}
+        </section>
       </section>
     </main>
   );
